@@ -665,7 +665,9 @@ export class FieldScene implements Scene, ScriptApi {
   async battle(e: Encounter): Promise<boolean> {
     playSfx("buzz");
     await this.flash("#ffffff");
-    const scene = new BattleScene({ encounter: e, backdrop: (ctx) => this.drawWorld(ctx, { actors: false }),
+    const scene = new BattleScene({
+      encounter: e,
+      backdrop: (ctx) => this.drawWorld(ctx, { actors: false }),
     });
     const result = await game.stack.run(scene);
     playMusic(this.map.music);

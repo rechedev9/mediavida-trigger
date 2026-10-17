@@ -446,10 +446,9 @@ export class MenuScene implements Scene {
     drawWindow(ctx, { x: 92, y: 88, w: 160, h: 60 });
     const help =
       st.battleMode === "wait"
-        ? "El tiempo se para en los submenús."
-        : "El tiempo no se para nunca.";
-    drawText(ctx, help.slice(0, 24), { x: 100, y: 96 });
-    drawText(ctx, help.slice(24), { x: 100, y: 108 });
+        ? ["El tiempo se para", "mientras eliges."]
+        : ["El tiempo no se para", "nunca."];
+    help.forEach((line, i) => drawText(ctx, line, { x: 100, y: 96 + i * 12 }));
   }
 }
 

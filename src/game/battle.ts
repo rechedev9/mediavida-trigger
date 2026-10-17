@@ -273,8 +273,9 @@ export class BattleScene implements Scene {
     this.updateEscape(dt);
     if (this.phase !== "run") return;
 
-    const submenu = this.ui === "techs" || this.ui === "items" || this.ui === "target";
-    const paused = this.busy || (game.state.settings.battleMode === "wait" && submenu);
+    // Wait mode is fully turn based: gauges stop while a party member is choosing.
+    const choosing = this.ui !== "idle";
+    const paused = this.busy || (game.state.settings.battleMode === "wait" && choosing);
     if (!paused) this.tickGauges(dt);
 
     if (this.ui === "idle") this.openNextCommand();

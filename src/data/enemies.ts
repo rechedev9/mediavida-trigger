@@ -278,7 +278,7 @@ const SPECS: Record<string, EnemySpec> = {
   "gran-troll": {
     name: "Gran Troll",
     level: 6,
-    hp: 520,
+    hp: 420,
     xp: 120,
     karma: 100,
     weak: ["fuego", "rayo"],
@@ -303,7 +303,7 @@ const SPECS: Record<string, EnemySpec> = {
   banhammer: {
     name: "Banhammer",
     level: 11,
-    hp: 1100,
+    hp: 950,
     xp: 300,
     karma: 200,
     weak: ["sombra"],
@@ -372,8 +372,8 @@ const SPECS: Record<string, EnemySpec> = {
   },
   lagvos: {
     name: "Lagvos",
-    level: 20,
-    hp: 4200,
+    level: 17,
+    hp: 2400,
     xp: 0,
     karma: 0,
     weak: [],

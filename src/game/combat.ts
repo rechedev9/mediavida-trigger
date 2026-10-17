@@ -28,7 +28,7 @@ export function maxMp(def: MemberDef, level: number): number {
 
 /** XP needed to go from `level` to `level + 1`. */
 export function xpToNext(level: number): number {
-  return Math.round(20 * level ** 1.6);
+  return Math.round(20 * level ** 1.3);
 }
 
 /** Applies gained XP; returns the new level and the leftover XP toward the next one. */

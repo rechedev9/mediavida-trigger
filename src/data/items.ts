@@ -26,22 +26,6 @@ export const ITEMS: Record<string, ItemDef> = {
     amount: 0.5,
     price: 80,
   },
-  "llave-lan": {
-    id: "llave-lan",
-    name: "Pase de la LAN",
-    desc: "Entrada a la LAN de 2005.",
-    kind: "key",
-    amount: 0,
-    price: 0,
-  },
-  "llave-mafia": {
-    id: "llave-mafia",
-    name: "Invitación a la Mafia",
-    desc: "Noche tranquila.",
-    kind: "key",
-    amount: 0,
-    price: 0,
-  },
   "maquina-bump": {
     id: "maquina-bump",
     name: "Pieza de la Máquina",

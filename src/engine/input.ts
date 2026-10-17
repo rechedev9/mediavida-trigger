@@ -88,8 +88,10 @@ export function updateInput(dt: number): void {
   for (const b of pressedNow) pressedFrame.add(b);
   pressedNow.clear();
   for (const b of ALL) {
+    // A tap released before this frame still moves menu cursors once.
     if (!held.has(b)) {
       repeatTimer.delete(b);
+      if (pressedFrame.has(b)) repeatFrame.add(b);
       continue;
     }
     if (pressedFrame.has(b)) {
