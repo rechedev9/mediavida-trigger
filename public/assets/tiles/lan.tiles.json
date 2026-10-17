@@ -1,0 +1,212 @@
+{
+  "tileSize": 16,
+  "columns": 16,
+  "tiles": {
+    "chest": {
+      "index": 0,
+      "solid": true
+    },
+    "chest-open": {
+      "index": 1,
+      "solid": true
+    },
+    "save": {
+      "index": 2,
+      "solid": false,
+      "frames": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "fps": 6
+    },
+    "floor": {
+      "index": 6,
+      "solid": false
+    },
+    "floor-2": {
+      "index": 7,
+      "solid": false
+    },
+    "carpet": {
+      "index": 8,
+      "solid": false
+    },
+    "carpet-n": {
+      "index": 9,
+      "solid": false
+    },
+    "carpet-s": {
+      "index": 10,
+      "solid": false
+    },
+    "carpet-w": {
+      "index": 11,
+      "solid": false
+    },
+    "carpet-e": {
+      "index": 12,
+      "solid": false
+    },
+    "carpet-nw": {
+      "index": 13,
+      "solid": false
+    },
+    "carpet-ne": {
+      "index": 14,
+      "solid": false
+    },
+    "carpet-sw": {
+      "index": 15,
+      "solid": false
+    },
+    "carpet-se": {
+      "index": 16,
+      "solid": false
+    },
+    "carpet-inw": {
+      "index": 17,
+      "solid": false
+    },
+    "carpet-ine": {
+      "index": 18,
+      "solid": false
+    },
+    "carpet-isw": {
+      "index": 19,
+      "solid": false
+    },
+    "carpet-ise": {
+      "index": 20,
+      "solid": false
+    },
+    "wall-top": {
+      "index": 21,
+      "solid": true
+    },
+    "wall": {
+      "index": 22,
+      "solid": true
+    },
+    "poster": {
+      "index": 23,
+      "solid": true
+    },
+    "poster-2": {
+      "index": 24,
+      "solid": true
+    },
+    "door": {
+      "index": 25,
+      "solid": false
+    },
+    "desk-pc": {
+      "index": 26,
+      "solid": true,
+      "frames": [
+        26,
+        27,
+        28,
+        29
+      ],
+      "fps": 3
+    },
+    "desk-pc-2": {
+      "index": 30,
+      "solid": true,
+      "frames": [
+        30,
+        31,
+        32,
+        33
+      ],
+      "fps": 4
+    },
+    "desk": {
+      "index": 34,
+      "solid": true
+    },
+    "chair": {
+      "index": 35,
+      "solid": false
+    },
+    "cable": {
+      "index": 36,
+      "solid": false
+    },
+    "cable-v": {
+      "index": 37,
+      "solid": false
+    },
+    "crt": {
+      "index": 38,
+      "solid": true,
+      "frames": [
+        38,
+        39
+      ],
+      "fps": 2
+    },
+    "server": {
+      "index": 40,
+      "solid": true,
+      "frames": [
+        40,
+        41,
+        42,
+        43
+      ],
+      "fps": 4
+    },
+    "crate": {
+      "index": 44,
+      "solid": true
+    },
+    "bar": {
+      "index": 45,
+      "solid": true
+    },
+    "bar-top": {
+      "index": 46,
+      "solid": true
+    },
+    "stage": {
+      "index": 47,
+      "solid": false
+    },
+    "stage-2": {
+      "index": 48,
+      "solid": false
+    },
+    "stage-edge": {
+      "index": 49,
+      "solid": true
+    },
+    "speaker": {
+      "index": 50,
+      "solid": true
+    },
+    "plant": {
+      "index": 51,
+      "solid": true
+    },
+    "bin": {
+      "index": 52,
+      "solid": true
+    },
+    "vending": {
+      "index": 53,
+      "solid": true,
+      "frames": [
+        53,
+        54
+      ],
+      "fps": 2
+    },
+    "pizza": {
+      "index": 55,
+      "solid": false
+    }
+  }
+}

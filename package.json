@@ -1,0 +1,25 @@
+{
+  "name": "mediavida-trigger",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "art": "bun scripts/build-art.ts",
+    "lint": "oxlint src scripts art/src tests vite.config.ts",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "knip": "knip",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.3",
+    "knip": "6.41.0",
+    "oxfmt": "0.73.0",
+    "oxlint": "1.88.0",
+    "oxlint-tsgolint": "7.0.2004",
+    "typescript": "7.0.2",
+    "vite": "8.3.4"
+  }
+}

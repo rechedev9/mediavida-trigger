@@ -1,0 +1,470 @@
+{
+  "tileSize": 16,
+  "columns": 16,
+  "tiles": {
+    "chest": {
+      "index": 0,
+      "solid": true
+    },
+    "chest-open": {
+      "index": 1,
+      "solid": true
+    },
+    "save": {
+      "index": 2,
+      "solid": false,
+      "frames": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "fps": 6
+    },
+    "grass": {
+      "index": 6,
+      "solid": false
+    },
+    "grass-2": {
+      "index": 7,
+      "solid": false
+    },
+    "grass-flower": {
+      "index": 8,
+      "solid": false
+    },
+    "path": {
+      "index": 9,
+      "solid": false
+    },
+    "path-2": {
+      "index": 10,
+      "solid": false
+    },
+    "cobble": {
+      "index": 11,
+      "solid": false
+    },
+    "cobble-2": {
+      "index": 12,
+      "solid": false
+    },
+    "water": {
+      "index": 13,
+      "solid": true,
+      "frames": [
+        13,
+        14,
+        15,
+        16
+      ],
+      "fps": 3
+    },
+    "path-n": {
+      "index": 17,
+      "solid": false
+    },
+    "path-s": {
+      "index": 18,
+      "solid": false
+    },
+    "path-w": {
+      "index": 19,
+      "solid": false
+    },
+    "path-e": {
+      "index": 20,
+      "solid": false
+    },
+    "path-nw": {
+      "index": 21,
+      "solid": false
+    },
+    "path-ne": {
+      "index": 22,
+      "solid": false
+    },
+    "path-sw": {
+      "index": 23,
+      "solid": false
+    },
+    "path-se": {
+      "index": 24,
+      "solid": false
+    },
+    "path-inw": {
+      "index": 25,
+      "solid": false
+    },
+    "path-ine": {
+      "index": 26,
+      "solid": false
+    },
+    "path-isw": {
+      "index": 27,
+      "solid": false
+    },
+    "path-ise": {
+      "index": 28,
+      "solid": false
+    },
+    "cobble-n": {
+      "index": 29,
+      "solid": false
+    },
+    "cobble-s": {
+      "index": 30,
+      "solid": false
+    },
+    "cobble-w": {
+      "index": 31,
+      "solid": false
+    },
+    "cobble-e": {
+      "index": 32,
+      "solid": false
+    },
+    "cobble-nw": {
+      "index": 33,
+      "solid": false
+    },
+    "cobble-ne": {
+      "index": 34,
+      "solid": false
+    },
+    "cobble-sw": {
+      "index": 35,
+      "solid": false
+    },
+    "cobble-se": {
+      "index": 36,
+      "solid": false
+    },
+    "cobble-inw": {
+      "index": 37,
+      "solid": false
+    },
+    "cobble-ine": {
+      "index": 38,
+      "solid": false
+    },
+    "cobble-isw": {
+      "index": 39,
+      "solid": false
+    },
+    "cobble-ise": {
+      "index": 40,
+      "solid": false
+    },
+    "shore-n": {
+      "index": 41,
+      "solid": true,
+      "frames": [
+        41,
+        42,
+        43,
+        44
+      ],
+      "fps": 4
+    },
+    "shore-s": {
+      "index": 45,
+      "solid": true,
+      "frames": [
+        45,
+        46,
+        47,
+        48
+      ],
+      "fps": 4
+    },
+    "shore-w": {
+      "index": 49,
+      "solid": true,
+      "frames": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "fps": 4
+    },
+    "shore-e": {
+      "index": 53,
+      "solid": true,
+      "frames": [
+        53,
+        54,
+        55,
+        56
+      ],
+      "fps": 4
+    },
+    "shore-nw": {
+      "index": 57,
+      "solid": true,
+      "frames": [
+        57,
+        58,
+        59,
+        60
+      ],
+      "fps": 4
+    },
+    "shore-ne": {
+      "index": 61,
+      "solid": true,
+      "frames": [
+        61,
+        62,
+        63,
+        64
+      ],
+      "fps": 4
+    },
+    "shore-sw": {
+      "index": 65,
+      "solid": true,
+      "frames": [
+        65,
+        66,
+        67,
+        68
+      ],
+      "fps": 4
+    },
+    "shore-se": {
+      "index": 69,
+      "solid": true,
+      "frames": [
+        69,
+        70,
+        71,
+        72
+      ],
+      "fps": 4
+    },
+    "shore-inw": {
+      "index": 73,
+      "solid": true,
+      "frames": [
+        73,
+        74,
+        75,
+        76
+      ],
+      "fps": 4
+    },
+    "shore-ine": {
+      "index": 77,
+      "solid": true,
+      "frames": [
+        77,
+        78,
+        79,
+        80
+      ],
+      "fps": 4
+    },
+    "shore-isw": {
+      "index": 81,
+      "solid": true,
+      "frames": [
+        81,
+        82,
+        83,
+        84
+      ],
+      "fps": 4
+    },
+    "shore-ise": {
+      "index": 85,
+      "solid": true,
+      "frames": [
+        85,
+        86,
+        87,
+        88
+      ],
+      "fps": 4
+    },
+    "wall": {
+      "index": 89,
+      "solid": true
+    },
+    "window": {
+      "index": 90,
+      "solid": true
+    },
+    "door": {
+      "index": 91,
+      "solid": false
+    },
+    "roof-peak": {
+      "index": 92,
+      "solid": true
+    },
+    "roof": {
+      "index": 93,
+      "solid": true
+    },
+    "roof-edge": {
+      "index": 94,
+      "solid": true,
+      "over": true
+    },
+    "tree": {
+      "index": 95,
+      "solid": true
+    },
+    "tree-top": {
+      "index": 96,
+      "solid": false,
+      "over": true
+    },
+    "hedge": {
+      "index": 97,
+      "solid": true
+    },
+    "fence": {
+      "index": 98,
+      "solid": true
+    },
+    "well": {
+      "index": 99,
+      "solid": true,
+      "frames": [
+        99,
+        100
+      ],
+      "fps": 2
+    },
+    "barrel": {
+      "index": 101,
+      "solid": true
+    },
+    "bush": {
+      "index": 102,
+      "solid": true
+    },
+    "flowerbed": {
+      "index": 103,
+      "solid": true
+    },
+    "mfloor": {
+      "index": 104,
+      "solid": false
+    },
+    "mfloor-2": {
+      "index": 105,
+      "solid": false
+    },
+    "carpet": {
+      "index": 106,
+      "solid": false
+    },
+    "carpet-n": {
+      "index": 107,
+      "solid": false
+    },
+    "carpet-s": {
+      "index": 108,
+      "solid": false
+    },
+    "carpet-w": {
+      "index": 109,
+      "solid": false
+    },
+    "carpet-e": {
+      "index": 110,
+      "solid": false
+    },
+    "carpet-nw": {
+      "index": 111,
+      "solid": false
+    },
+    "carpet-ne": {
+      "index": 112,
+      "solid": false
+    },
+    "carpet-sw": {
+      "index": 113,
+      "solid": false
+    },
+    "carpet-se": {
+      "index": 114,
+      "solid": false
+    },
+    "carpet-inw": {
+      "index": 115,
+      "solid": false
+    },
+    "carpet-ine": {
+      "index": 116,
+      "solid": false
+    },
+    "carpet-isw": {
+      "index": 117,
+      "solid": false
+    },
+    "carpet-ise": {
+      "index": 118,
+      "solid": false
+    },
+    "mwall": {
+      "index": 119,
+      "solid": true
+    },
+    "mdoor": {
+      "index": 120,
+      "solid": false
+    },
+    "books": {
+      "index": 121,
+      "solid": true
+    },
+    "painting": {
+      "index": 122,
+      "solid": true
+    },
+    "candle": {
+      "index": 123,
+      "solid": true,
+      "frames": [
+        123,
+        124,
+        125,
+        126
+      ],
+      "fps": 6
+    },
+    "table": {
+      "index": 127,
+      "solid": true
+    },
+    "table-nw": {
+      "index": 128,
+      "solid": true
+    },
+    "table-ne": {
+      "index": 129,
+      "solid": true
+    },
+    "table-sw": {
+      "index": 130,
+      "solid": true
+    },
+    "table-se": {
+      "index": 131,
+      "solid": true
+    },
+    "safe": {
+      "index": 132,
+      "solid": true
+    },
+    "armchair": {
+      "index": 133,
+      "solid": true
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "tileSize": 16,
+  "columns": 16,
+  "tiles": {
+    "chest": {
+      "index": 0,
+      "solid": true
+    },
+    "chest-open": {
+      "index": 1,
+      "solid": true
+    },
+    "save": {
+      "index": 2,
+      "solid": false,
+      "frames": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "fps": 6
+    },
+    "metal": {
+      "index": 6,
+      "solid": false
+    },
+    "metal-2": {
+      "index": 7,
+      "solid": false
+    },
+    "rust": {
+      "index": 8,
+      "solid": false
+    },
+    "rust-n": {
+      "index": 9,
+      "solid": false
+    },
+    "rust-s": {
+      "index": 10,
+      "solid": false
+    },
+    "rust-w": {
+      "index": 11,
+      "solid": false
+    },
+    "rust-e": {
+      "index": 12,
+      "solid": false
+    },
+    "rust-nw": {
+      "index": 13,
+      "solid": false
+    },
+    "rust-ne": {
+      "index": 14,
+      "solid": false
+    },
+    "rust-sw": {
+      "index": 15,
+      "solid": false
+    },
+    "rust-se": {
+      "index": 16,
+      "solid": false
+    },
+    "rust-inw": {
+      "index": 17,
+      "solid": false
+    },
+    "rust-ine": {
+      "index": 18,
+      "solid": false
+    },
+    "rust-isw": {
+      "index": 19,
+      "solid": false
+    },
+    "rust-ise": {
+      "index": 20,
+      "solid": false
+    },
+    "wall-top": {
+      "index": 21,
+      "solid": true
+    },
+    "mwall": {
+      "index": 22,
+      "solid": true
+    },
+    "mwall-vent": {
+      "index": 23,
+      "solid": true
+    },
+    "mwall-pipe": {
+      "index": 24,
+      "solid": true
+    },
+    "screen": {
+      "index": 25,
+      "solid": true,
+      "frames": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "fps": 4
+    },
+    "screen-2": {
+      "index": 29,
+      "solid": true,
+      "frames": [
+        29,
+        30,
+        31,
+        32
+      ],
+      "fps": 4
+    },
+    "rack": {
+      "index": 33,
+      "solid": true,
+      "frames": [
+        33,
+        34,
+        35,
+        36
+      ],
+      "fps": 4
+    },
+    "cable": {
+      "index": 37,
+      "solid": false
+    },
+    "cable-v": {
+      "index": 38,
+      "solid": false
+    },
+    "rubble": {
+      "index": 39,
+      "solid": true
+    },
+    "rubble-2": {
+      "index": 40,
+      "solid": true
+    },
+    "terminal": {
+      "index": 41,
+      "solid": true,
+      "frames": [
+        41,
+        42
+      ],
+      "fps": 2
+    },
+    "pipe": {
+      "index": 43,
+      "solid": true
+    },
+    "pipe-v": {
+      "index": 44,
+      "solid": true
+    },
+    "hazard": {
+      "index": 45,
+      "solid": false
+    },
+    "broken": {
+      "index": 46,
+      "solid": true,
+      "frames": [
+        46,
+        47
+      ],
+      "fps": 3
+    },
+    "door": {
+      "index": 48,
+      "solid": false
+    },
+    "vent": {
+      "index": 49,
+      "solid": false
+    },
+    "crate": {
+      "index": 50,
+      "solid": true
+    },
+    "drum": {
+      "index": 51,
+      "solid": true,
+      "frames": [
+        51,
+        52
+      ],
+      "fps": 2
+    },
+    "metal-3": {
+      "index": 53,
+      "solid": false
+    },
+    "locker": {
+      "index": 54,
+      "solid": true
+    },
+    "light": {
+      "index": 55,
+      "solid": false,
+      "frames": [
+        55,
+        56
+      ],
+      "fps": 2
+    }
+  }
+}

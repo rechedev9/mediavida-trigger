@@ -1,0 +1,453 @@
+{
+  "tileSize": 16,
+  "columns": 16,
+  "tiles": {
+    "chest": {
+      "index": 0,
+      "solid": true
+    },
+    "chest-open": {
+      "index": 1,
+      "solid": true
+    },
+    "save": {
+      "index": 2,
+      "solid": false,
+      "frames": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "fps": 6
+    },
+    "grass": {
+      "index": 6,
+      "solid": false
+    },
+    "grass-2": {
+      "index": 7,
+      "solid": false
+    },
+    "grass-flower": {
+      "index": 8,
+      "solid": false
+    },
+    "grass-flower-2": {
+      "index": 9,
+      "solid": false
+    },
+    "path": {
+      "index": 10,
+      "solid": false
+    },
+    "path-2": {
+      "index": 11,
+      "solid": false
+    },
+    "stone": {
+      "index": 12,
+      "solid": false
+    },
+    "stone-2": {
+      "index": 13,
+      "solid": false
+    },
+    "water": {
+      "index": 14,
+      "solid": true,
+      "frames": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "fps": 3
+    },
+    "path-n": {
+      "index": 18,
+      "solid": false
+    },
+    "path-s": {
+      "index": 19,
+      "solid": false
+    },
+    "path-w": {
+      "index": 20,
+      "solid": false
+    },
+    "path-e": {
+      "index": 21,
+      "solid": false
+    },
+    "path-nw": {
+      "index": 22,
+      "solid": false
+    },
+    "path-ne": {
+      "index": 23,
+      "solid": false
+    },
+    "path-sw": {
+      "index": 24,
+      "solid": false
+    },
+    "path-se": {
+      "index": 25,
+      "solid": false
+    },
+    "path-inw": {
+      "index": 26,
+      "solid": false
+    },
+    "path-ine": {
+      "index": 27,
+      "solid": false
+    },
+    "path-isw": {
+      "index": 28,
+      "solid": false
+    },
+    "path-ise": {
+      "index": 29,
+      "solid": false
+    },
+    "paving-n": {
+      "index": 30,
+      "solid": false
+    },
+    "paving-s": {
+      "index": 31,
+      "solid": false
+    },
+    "paving-w": {
+      "index": 32,
+      "solid": false
+    },
+    "paving-e": {
+      "index": 33,
+      "solid": false
+    },
+    "paving-nw": {
+      "index": 34,
+      "solid": false
+    },
+    "paving-ne": {
+      "index": 35,
+      "solid": false
+    },
+    "paving-sw": {
+      "index": 36,
+      "solid": false
+    },
+    "paving-se": {
+      "index": 37,
+      "solid": false
+    },
+    "paving-inw": {
+      "index": 38,
+      "solid": false
+    },
+    "paving-ine": {
+      "index": 39,
+      "solid": false
+    },
+    "paving-isw": {
+      "index": 40,
+      "solid": false
+    },
+    "paving-ise": {
+      "index": 41,
+      "solid": false
+    },
+    "shore-n": {
+      "index": 42,
+      "solid": true,
+      "frames": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "fps": 4
+    },
+    "shore-s": {
+      "index": 46,
+      "solid": true,
+      "frames": [
+        46,
+        47,
+        48,
+        49
+      ],
+      "fps": 4
+    },
+    "shore-w": {
+      "index": 50,
+      "solid": true,
+      "frames": [
+        50,
+        51,
+        52,
+        53
+      ],
+      "fps": 4
+    },
+    "shore-e": {
+      "index": 54,
+      "solid": true,
+      "frames": [
+        54,
+        55,
+        56,
+        57
+      ],
+      "fps": 4
+    },
+    "shore-nw": {
+      "index": 58,
+      "solid": true,
+      "frames": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "fps": 4
+    },
+    "shore-ne": {
+      "index": 62,
+      "solid": true,
+      "frames": [
+        62,
+        63,
+        64,
+        65
+      ],
+      "fps": 4
+    },
+    "shore-sw": {
+      "index": 66,
+      "solid": true,
+      "frames": [
+        66,
+        67,
+        68,
+        69
+      ],
+      "fps": 4
+    },
+    "shore-se": {
+      "index": 70,
+      "solid": true,
+      "frames": [
+        70,
+        71,
+        72,
+        73
+      ],
+      "fps": 4
+    },
+    "shore-inw": {
+      "index": 74,
+      "solid": true,
+      "frames": [
+        74,
+        75,
+        76,
+        77
+      ],
+      "fps": 4
+    },
+    "shore-ine": {
+      "index": 78,
+      "solid": true,
+      "frames": [
+        78,
+        79,
+        80,
+        81
+      ],
+      "fps": 4
+    },
+    "shore-isw": {
+      "index": 82,
+      "solid": true,
+      "frames": [
+        82,
+        83,
+        84,
+        85
+      ],
+      "fps": 4
+    },
+    "shore-ise": {
+      "index": 86,
+      "solid": true,
+      "frames": [
+        86,
+        87,
+        88,
+        89
+      ],
+      "fps": 4
+    },
+    "wall": {
+      "index": 90,
+      "solid": true
+    },
+    "window": {
+      "index": 91,
+      "solid": true
+    },
+    "door": {
+      "index": 92,
+      "solid": false
+    },
+    "roof-peak": {
+      "index": 93,
+      "solid": true
+    },
+    "roof": {
+      "index": 94,
+      "solid": true
+    },
+    "roof-edge": {
+      "index": 95,
+      "solid": true,
+      "over": true
+    },
+    "tree": {
+      "index": 96,
+      "solid": true
+    },
+    "tree-top": {
+      "index": 97,
+      "solid": false,
+      "over": true
+    },
+    "bush": {
+      "index": 98,
+      "solid": true
+    },
+    "fence": {
+      "index": 99,
+      "solid": true
+    },
+    "counter": {
+      "index": 100,
+      "solid": true
+    },
+    "counter-l": {
+      "index": 101,
+      "solid": true
+    },
+    "counter-r": {
+      "index": 102,
+      "solid": true
+    },
+    "awning": {
+      "index": 103,
+      "solid": false,
+      "over": true
+    },
+    "awning-l": {
+      "index": 104,
+      "solid": false,
+      "over": true
+    },
+    "awning-r": {
+      "index": 105,
+      "solid": false,
+      "over": true
+    },
+    "lamp": {
+      "index": 106,
+      "solid": true
+    },
+    "fountain": {
+      "index": 107,
+      "solid": true,
+      "frames": [
+        107,
+        108,
+        109,
+        110
+      ],
+      "fps": 6
+    },
+    "fountain-nw": {
+      "index": 111,
+      "solid": true,
+      "frames": [
+        111,
+        112,
+        113,
+        114
+      ],
+      "fps": 6
+    },
+    "fountain-ne": {
+      "index": 115,
+      "solid": true,
+      "frames": [
+        115,
+        116,
+        117,
+        118
+      ],
+      "fps": 6
+    },
+    "fountain-sw": {
+      "index": 119,
+      "solid": true,
+      "frames": [
+        119,
+        120,
+        121,
+        122
+      ],
+      "fps": 6
+    },
+    "fountain-se": {
+      "index": 123,
+      "solid": true,
+      "frames": [
+        123,
+        124,
+        125,
+        126
+      ],
+      "fps": 6
+    },
+    "sign": {
+      "index": 127,
+      "solid": true
+    },
+    "banner": {
+      "index": 128,
+      "solid": true,
+      "frames": [
+        128,
+        129
+      ],
+      "fps": 3
+    },
+    "barrel": {
+      "index": 130,
+      "solid": true
+    },
+    "crate": {
+      "index": 131,
+      "solid": true
+    },
+    "flowerbed": {
+      "index": 132,
+      "solid": true
+    },
+    "rock": {
+      "index": 133,
+      "solid": true
+    }
+  }
+}

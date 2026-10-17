@@ -1,0 +1,63 @@
+{ "frames": [
+   {
+    "filename": "banhammer 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 64, "h": 72 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 72 },
+    "sourceSize": { "w": 64, "h": 72 },
+    "duration": 460
+   },
+   {
+    "filename": "banhammer 1.aseprite",
+    "frame": { "x": 64, "y": 0, "w": 64, "h": 72 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 72 },
+    "sourceSize": { "w": 64, "h": 72 },
+    "duration": 460
+   },
+   {
+    "filename": "banhammer 2.aseprite",
+    "frame": { "x": 128, "y": 0, "w": 64, "h": 72 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 72 },
+    "sourceSize": { "w": 64, "h": 72 },
+    "duration": 180
+   },
+   {
+    "filename": "banhammer 3.aseprite",
+    "frame": { "x": 192, "y": 0, "w": 64, "h": 72 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 72 },
+    "sourceSize": { "w": 64, "h": 72 },
+    "duration": 300
+   },
+   {
+    "filename": "banhammer 4.aseprite",
+    "frame": { "x": 256, "y": 0, "w": 64, "h": 72 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 72 },
+    "sourceSize": { "w": 64, "h": 72 },
+    "duration": 320
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.6-x64",
+  "image": "banhammer.png",
+  "format": "I8",
+  "size": { "w": 320, "h": 72 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "idle", "from": 0, "to": 1, "direction": "forward", "color": "#000000ff" },
+   { "name": "attack", "from": 2, "to": 3, "direction": "forward", "color": "#000000ff" },
+   { "name": "hurt", "from": 4, "to": 4, "direction": "forward", "color": "#000000ff" }
+  ],
+  "slices": [
+  ]
+ }
+}

@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "logo.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 232, "h": 112 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 232, "h": 112 },
+    "sourceSize": { "w": 232, "h": 112 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.18.6-x64",
+  "image": "logo.png",
+  "format": "I8",
+  "size": { "w": 232, "h": 112 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}
