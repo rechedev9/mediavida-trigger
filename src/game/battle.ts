@@ -4,7 +4,7 @@ import { itemDef } from "../data/items";
 import { memberDef } from "../data/party";
 import { comboTechs, techDef } from "../data/techs";
 import type { EnemyAttack, EnemyDef, FxId, ItemDef, Stats, TechDef } from "../data/types";
-import { drawBar, drawText, drawWindow, measureText } from "../engine/gfx";
+import { drawBar, drawText, drawWindow, LINE_H, measureText } from "../engine/gfx";
 import { isHeld, wasPressed, wasRepeated } from "../engine/input";
 import type { Scene } from "../engine/scene";
 import { SCREEN_H, SCREEN_W } from "../engine/screen";
@@ -122,7 +122,7 @@ export class BattleScene implements Scene {
   private command = new ListMenu([{ label: "Atacar" }, { label: "Técnica" }, { label: "Objeto" }], {
     rows: 3,
   });
-  private list = new ListMenu([], { rows: 5 });
+  private list = new ListMenu([], { rows: 4 });
   private techOptions: TechOption[] = [];
   private itemIds: string[] = [];
   private pending: Pending | null = null;
@@ -385,7 +385,7 @@ export class BattleScene implements Scene {
         right: String(o.tech.mp),
         enabled: o.enabled,
       })),
-      { rows: 5 },
+      { rows: 4 },
     );
     this.ui = "techs";
   }
@@ -427,7 +427,7 @@ export class BattleScene implements Scene {
         label: itemDef(id)?.name ?? id,
         right: `x${game.state.items[id] ?? 0}`,
       })),
-      { rows: 5 },
+      { rows: 4 },
     );
     this.ui = "items";
   }
@@ -906,8 +906,15 @@ export class BattleScene implements Scene {
     }
     if (this.actor && this.ui !== "idle") {
       const a = this.actor;
-      const bob = Math.floor(this.t * 4) % 2;
-      drawText(ctx, "v", { x: a.x, y: a.y - 40 - bob, align: "center", color: "#f8c060" });
+      const y = a.y - a.size[1] - 10 - (Math.floor(this.t * 4) % 2);
+      ctx.fillStyle = "#200c08";
+      ctx.fillRect(a.x - 4, y - 1, 9, 2);
+      for (let i = 0; i < 4; i++) {
+        ctx.fillStyle = "#200c08";
+        ctx.fillRect(a.x - 4 + i, y + 1 + i, 9 - i * 2, 1);
+        ctx.fillStyle = "#f8c060";
+        ctx.fillRect(a.x - 3 + i, y + i, 7 - i * 2, 1);
+      }
     }
     this.drawStatus(ctx);
     this.drawMenus(ctx);
@@ -921,20 +928,28 @@ export class BattleScene implements Scene {
   }
 
   private drawStatus(ctx: CanvasRenderingContext2D): void {
-    const box = { x: 4, y: 164, w: 248, h: 56 };
+    const box = { x: 4, y: 164, w: 172, h: 56 };
     drawWindow(ctx, box);
+    const aimed = this.ui === "target" ? this.aimed() : [];
     this.party.forEach((f, i) => {
       const y = box.y + 8 + i * 14;
       const ko = !this.alive(f);
-      const nameColor = ko ? "#f86060" : this.actor === f ? "#f8c060" : "#f8f8f8";
-      drawText(ctx, f.name, { x: box.x + 8, y, color: nameColor });
+      const nameColor = aimed.includes(f)
+        ? "#80f0f8"
+        : ko
+          ? "#f86060"
+          : this.actor === f
+            ? "#f8c060"
+            : "#f8f8f8";
+      drawText(ctx, f.name, { x: box.x + 20, y, color: nameColor });
+      if (aimed.includes(f)) drawCursor(ctx, { x: box.x + 20, y, t: this.t });
       const hpColor = ko ? "#f86060" : f.hp < f.maxHp / 4 ? "#f8c060" : "#f8f8f8";
-      drawText(ctx, String(f.hp), { x: box.x + 124, y, align: "right", color: hpColor });
-      drawText(ctx, String(f.mp), { x: box.x + 166, y, align: "right", color: "#88c0f8" });
+      drawText(ctx, String(f.hp), { x: box.x + 114, y, align: "right", color: hpColor });
+      drawText(ctx, String(f.mp), { x: box.x + 138, y, align: "right", color: "#88c0f8" });
       drawBar(ctx, {
-        x: box.x + 184,
+        x: box.x + 145,
         y: y + 4,
-        w: 54,
+        w: 21,
         value: f.atb,
         color: f.atb >= 1 ? "#f8c040" : "#58a0f8",
       });
@@ -942,38 +957,52 @@ export class BattleScene implements Scene {
   }
 
   private drawMenus(ctx: CanvasRenderingContext2D): void {
-    if (this.ui === "idle") return;
-    const focused = this.ui === "command";
-    // Sits over the ATB bars so it never hides the enemies.
-    this.command.draw(ctx, { x: 176, y: 164, w: 76, h: 56 }, focused);
-    if (
-      this.ui === "techs" ||
-      this.ui === "items" ||
-      (this.ui === "target" && this.pending?.kind !== "attack")
-    ) {
-      const listFocus = this.ui === "techs" || this.ui === "items";
-      this.list.draw(ctx, { x: 82, y: 84, w: 170, h: 76 }, listFocus);
+    const box = { x: 178, y: 164, w: 74, h: 56 };
+    if (this.ui === "idle") {
+      drawWindow(ctx, box);
+      this.command.items.forEach((it, i) => {
+        drawText(ctx, it.label, { x: box.x + 20, y: box.y + 6 + i * LINE_H, color: "#787078" });
+      });
+      return;
+    }
+    this.command.draw(ctx, box, this.ui === "command");
+    if (this.ui === "techs" || this.ui === "items") {
+      // Top of the screen keeps the party and the status panel visible.
+      this.list.draw(ctx, { x: 4, y: 30, w: 248, h: 56 });
       const desc = this.currentDesc();
-      if (desc && listFocus) {
+      if (desc) {
         drawWindow(ctx, { x: 4, y: 6, w: 248, h: 22 });
         drawText(ctx, desc, { x: 12, y: 11 });
       }
     }
     if (this.ui === "target") {
-      const list = this.targetAll ? this.targets : [this.targets[this.targetIndex]];
-      for (const f of list) {
-        if (!f) continue;
+      for (const f of this.aimed()) {
         drawCursor(ctx, { x: f.x - f.size[0] / 2 - 2, y: f.y - f.size[1] / 2 - 6, t: this.t });
       }
-      const f = this.targets[this.targetIndex];
-      if (f && !this.targetAll) {
-        drawWindow(ctx, { x: 4, y: 6, w: 248, h: 22 });
-        drawText(ctx, f.side === "enemy" ? f.name : `${f.name}  ${f.hp}/${f.maxHp}`, {
-          x: 12,
-          y: 11,
-        });
-      }
+      drawWindow(ctx, { x: 4, y: 6, w: 248, h: 22 });
+      drawText(ctx, `${this.pendingName()}:`, { x: 12, y: 11, color: "#f8c060" });
+      drawText(ctx, this.targetLabel(), { x: 12 + measureText(`${this.pendingName()}: `), y: 11 });
     }
+  }
+
+  private aimed(): Fighter[] {
+    if (this.targetAll) return this.targets;
+    const f = this.targets[this.targetIndex];
+    return f ? [f] : [];
+  }
+
+  private pendingName(): string {
+    const p = this.pending;
+    if (p?.kind === "tech") return p.option.tech.name;
+    if (p?.kind === "item") return p.item.name;
+    return "Atacar";
+  }
+
+  private targetLabel(): string {
+    const f = this.targets[this.targetIndex];
+    if (this.targetAll) return f?.side === "enemy" ? "Todos los enemigos" : "Todo el grupo";
+    if (!f) return "";
+    return f.side === "enemy" ? f.name : `${f.name}  PV ${f.hp}/${f.maxHp}`;
   }
 
   private currentDesc(): string {
