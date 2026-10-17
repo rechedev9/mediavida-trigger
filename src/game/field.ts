@@ -490,8 +490,8 @@ export class FieldScene implements Scene, ScriptApi {
     }
   }
 
-  /** Draws the map and actors without the HUD; battles use it as their backdrop. */
-  drawWorld(ctx: CanvasRenderingContext2D): void {
+  /** Draws the map and actors without the HUD; battles use the terrain alone as their backdrop. */
+  drawWorld(ctx: CanvasRenderingContext2D, opts: { actors: boolean } = { actors: true }): void {
     const set = this.set;
     ctx.fillStyle = "#080810";
     ctx.fillRect(0, 0, SCREEN_W, SCREEN_H);
@@ -538,7 +538,7 @@ export class FieldScene implements Scene, ScriptApi {
     type Drawable = { y: number; draw: () => void };
     const list: Drawable[] = [];
     for (const s of this.map.spawns) {
-      if (!this.spawnVisible(s)) continue;
+      if (!opts.actors || !this.spawnVisible(s)) continue;
       const x = s.x * TILE + TILE / 2 - camX;
       const y = s.y * TILE + TILE - camY + Math.round(Math.sin(time * 3 + s.x) * 1.5);
       list.push({
@@ -555,11 +555,9 @@ export class FieldScene implements Scene, ScriptApi {
           }),
       });
     }
-    const actors: Actor[] = [
-      ...this.npcs.filter((n) => n.visible && n.sheet),
-      ...this.followers,
-      this.player,
-    ];
+    const actors: Actor[] = opts.actors
+      ? [...this.npcs.filter((n) => n.visible && n.sheet), ...this.followers, this.player]
+      : [];
     for (const a of actors) {
       const { tag, flip } = facingTag(a);
       list.push({
@@ -667,7 +665,8 @@ export class FieldScene implements Scene, ScriptApi {
   async battle(e: Encounter): Promise<boolean> {
     playSfx("buzz");
     await this.flash("#ffffff");
-    const scene = new BattleScene({ encounter: e, backdrop: (ctx) => this.drawWorld(ctx) });
+    const scene = new BattleScene({ encounter: e, backdrop: (ctx) => this.drawWorld(ctx, { actors: false }),
+    });
     const result = await game.stack.run(scene);
     playMusic(this.map.music);
     if (result === "win") return true;

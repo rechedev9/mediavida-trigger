@@ -873,11 +873,18 @@ export class BattleScene implements Scene {
 
   draw(ctx: CanvasRenderingContext2D): void {
     this.backdrop(ctx);
-    ctx.fillStyle = "rgba(8,8,24,0.3)";
+    ctx.fillStyle = "rgba(8,8,24,0.55)";
     ctx.fillRect(0, 0, SCREEN_W, SCREEN_H);
     const order = this.fighters.toSorted((a, b) => a.y - b.y);
     for (const f of order) {
       if (f.side === "enemy" && f.alpha <= 0) continue;
+      const w = f.side === "enemy" ? f.size[0] : 14;
+      ctx.globalAlpha = 0.45 * f.alpha;
+      ctx.fillStyle = "#000000";
+      ctx.beginPath();
+      ctx.ellipse(f.x, f.y - 1, w / 2 + 2, 3, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
       const blink = f.hurtT > 0 && Math.floor(f.hurtT * 20) % 2 === 0;
       drawActor(ctx, {
         sheet: f.sheet,
@@ -936,7 +943,8 @@ export class BattleScene implements Scene {
   private drawMenus(ctx: CanvasRenderingContext2D): void {
     if (this.ui === "idle") return;
     const focused = this.ui === "command";
-    this.command.draw(ctx, { x: 4, y: 110, w: 76, h: 50 }, focused);
+    // Sits over the ATB bars so it never hides the enemies.
+    this.command.draw(ctx, { x: 176, y: 164, w: 76, h: 56 }, focused);
     if (
       this.ui === "techs" ||
       this.ui === "items" ||
