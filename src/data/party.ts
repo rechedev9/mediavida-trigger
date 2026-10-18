@@ -240,3 +240,28 @@ export function memberDef(id: string): MemberDef {
   if (!def) throw new Error(`Miembro desconocido: ${id}`);
   return def;
 }
+
+export const HERO_ID = "novato";
+export const DEFAULT_HERO_NAME = "Novato";
+export const HERO_NAME_MAX = 12;
+let heroName = DEFAULT_HERO_NAME;
+
+/** Set from the game state; every on-screen name goes through `memberName`. */
+export function setHeroName(name: string): void {
+  heroName = name;
+}
+
+export function memberName(id: string): string {
+  return id === HERO_ID ? heroName : memberDef(id).name;
+}
+
+/** Tech descriptions mention the hero by the default nick. */
+export function heroText(text: string): string {
+  return text.replaceAll(DEFAULT_HERO_NAME, heroName);
+}
+
+/** Trims, drops control characters and caps the length; empty falls back to the default. */
+export function cleanHeroName(raw: string): string {
+  const chars = Array.from(raw.replace(/\p{Cc}/gu, "").trim()).slice(0, HERO_NAME_MAX);
+  return chars.join("").trim() || DEFAULT_HERO_NAME;
+}

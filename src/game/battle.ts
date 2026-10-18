@@ -1,7 +1,7 @@
 import { playMusic, playSfx } from "../audio/audio";
 import { enemyDef } from "../data/enemies";
 import { itemDef } from "../data/items";
-import { memberDef } from "../data/party";
+import { heroText, memberDef, memberName } from "../data/party";
 import { comboTechs, techDef } from "../data/techs";
 import type { EnemyAttack, EnemyDef, FxId, ItemDef, Stats, TechDef } from "../data/types";
 import { drawBar, drawText, drawWindow, LINE_H, measureText, wrapText } from "../engine/gfx";
@@ -150,7 +150,7 @@ export class BattleScene implements Scene {
         key: `p${i}`,
         side: "party",
         id,
-        name: def.name,
+        name: memberName(id),
         level: m.level,
         stats: memberStats(def, m.level),
         hp: m.hp,
@@ -824,11 +824,11 @@ export class BattleScene implements Scene {
       m.level = next.level;
       if (m.hp > 0) m.hp += hpGain;
       m.mp += mpGain;
-      lines.push(`${def.name} sube al nivel ${m.level}.`);
+      lines.push(`${memberName(def.id)} sube al nivel ${m.level}.`);
       for (const t of def.techs) {
         const tech = techDef(t.id);
         if (tech && t.level > before && t.level <= m.level)
-          lines.push(`${def.name} aprende ${tech.name}.`);
+          lines.push(`${memberName(def.id)} aprende ${tech.name}.`);
       }
     }
     for (const e of enemies) {
@@ -1011,8 +1011,8 @@ export class BattleScene implements Scene {
       const o = this.techOptions[this.list.index];
       if (!o) return "";
       return o.tech.users.length > 1 && !o.enabled
-        ? `${o.tech.desc} Necesita a todos listos.`
-        : o.tech.desc;
+        ? `${heroText(o.tech.desc)} Necesita a todos listos.`
+        : heroText(o.tech.desc);
     }
     return itemDef(this.itemIds[this.list.index] ?? "")?.desc ?? "";
   }

@@ -1,7 +1,7 @@
 import { playMusic, playSfx, stopMusic, type MusicId, type SfxId } from "../audio/audio";
 import type { LegendEntry, MapDef, NpcDef, Script, SpawnDef } from "../data/map-types";
 import { mapDef } from "../data/maps";
-import { memberDef } from "../data/party";
+import { memberDef, memberName } from "../data/party";
 import { itemDef } from "../data/items";
 import type { Dir } from "../data/types";
 import { drawText, drawWindow, measureText } from "../engine/gfx";
@@ -651,7 +651,7 @@ export class FieldScene implements Scene, ScriptApi {
     joinParty(this.state, id);
     this.rebuildFollowers();
     playSfx("levelup");
-    await say(null, `¡${memberDef(id).name} se une al grupo!`);
+    await say(null, `¡${memberName(id)} se une al grupo!`);
   }
 
   async give(item: string, n = 1): Promise<void> {

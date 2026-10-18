@@ -1,5 +1,5 @@
 import { playMusic } from "../audio/audio";
-import { PARTY } from "../data/party";
+import { memberName, PARTY } from "../data/party";
 import { drawText } from "../engine/gfx";
 import { wasPressed } from "../engine/input";
 import type { Scene } from "../engine/scene";
@@ -7,14 +7,14 @@ import { SCREEN_H, SCREEN_W } from "../engine/screen";
 import { game } from "./game";
 import { drawActor } from "./sprites";
 
-type Line = { text: string; color?: string; gap?: number };
+type Line = { text: string; color?: string; gap?: number; member?: string };
 
 const CREDITS: Line[] = [
   { text: "MEDIAVIDA TRIGGER", color: "#f88820", gap: 24 },
   { text: "Lagvos ha caído. El foro vuelve a cargar.", gap: 12 },
   { text: "Los hilos se bumpean solos otra vez.", gap: 28 },
   { text: "EL GRUPO", color: "#f8c060", gap: 14 },
-  ...PARTY.map((m): Line => ({ text: `${m.name}, ${m.title}`, gap: 12 })),
+  ...PARTY.map((m): Line => ({ text: m.title, member: m.id, gap: 12 })),
   { text: "", gap: 20 },
   { text: "VETERANOS DEL FORO", color: "#f8c060", gap: 14 },
   { text: "ekeix, Zh3RoX, Kabraxis, Jastro, hda, Kaos", gap: 28 },
@@ -64,7 +64,8 @@ export class EndingScene implements Scene {
       const fade = Math.min(1, (BAND - 12 - y) / 16, (y - 4) / 16);
       if (fade > 0) {
         ctx.globalAlpha = fade;
-        drawText(ctx, line.text, {
+        const text = line.member ? `${memberName(line.member)}, ${line.text}` : line.text;
+        drawText(ctx, text, {
           x: SCREEN_W / 2,
           y,
           align: "center",

@@ -1,6 +1,6 @@
 import { playSfx, setVolume } from "../audio/audio";
 import { itemDef } from "../data/items";
-import { memberDef } from "../data/party";
+import { heroText, memberDef, memberName } from "../data/party";
 import { techDef } from "../data/techs";
 import { ELEMENT_NAMES, STAT_NAMES, type Stats, type TechDef } from "../data/types";
 import {
@@ -166,7 +166,7 @@ export class MenuScene implements Scene {
     if (item.kind === "revive") m.hp = Math.max(1, Math.round(hpMax * item.amount));
     addItem(s, item.id, -1);
     playSfx("heal");
-    this.message = `${def.name}: ${item.name}.`;
+    this.message = `${memberName(def.id)}: ${item.name}.`;
     if ((s.items[item.id] ?? 0) <= 0) this.openItems();
     else
       this.list.items[this.list.index] = { label: item.name, right: `x${s.items[item.id] ?? 0}` };
@@ -243,7 +243,7 @@ export class MenuScene implements Scene {
     }
     user.mp -= tech.mp;
     playSfx("heal");
-    this.message = `${userDef.name} usa ${tech.name}.`;
+    this.message = `${memberName(userDef.id)} usa ${tech.name}.`;
     this.mode = "techs";
   }
 
@@ -347,7 +347,7 @@ export class MenuScene implements Scene {
       drawFace(ctx, { id: m.id, x: 100, y, color: def.color, h: 26 });
       const color = i < 3 ? "#f8f8f8" : "#a8a0b8";
       const marked = this.mode === "order" && this.swapFirst === i;
-      drawText(ctx, def.name, { x: 136, y: y + 1, color: marked ? "#60e0f8" : color });
+      drawText(ctx, memberName(m.id), { x: 136, y: y + 1, color: marked ? "#60e0f8" : color });
       drawText(ctx, `Nv ${m.level}`, { x: 244, y: y + 1, align: "right", color: "#f8c060" });
       drawText(ctx, `PV ${m.hp}/${maxHp(def, m.level)}`, {
         x: 136,
@@ -371,9 +371,8 @@ export class MenuScene implements Scene {
   private drawPartyPicker(ctx: CanvasRenderingContext2D): void {
     drawWindow(ctx, { x: 120, y: 124, w: 132, h: 96 });
     this.members.forEach((m, i) => {
-      const def = memberDef(m.id);
       const y = 130 + i * LINE_H;
-      drawText(ctx, def.name, { x: 138, y, color: m.hp <= 0 ? "#f86060" : "#f8f8f8" });
+      drawText(ctx, memberName(m.id), { x: 138, y, color: m.hp <= 0 ? "#f86060" : "#f8f8f8" });
       drawText(ctx, String(m.hp), { x: 244, y, align: "right" });
       if (i === this.who) drawCursor(ctx, { x: 138, y, t: this.t });
     });
@@ -394,7 +393,7 @@ export class MenuScene implements Scene {
     this.list.draw(ctx, { x: 92, y: 4, w: 160, h: 122 }, this.mode === "techs");
     const tech = this.techs[this.list.index];
     if (tech && this.mode === "techs") {
-      const lines = wrapText(tech.desc, 144).slice(0, 2);
+      const lines = wrapText(heroText(tech.desc), 144).slice(0, 2);
       drawWindow(ctx, { x: 92, y: 128, w: 160, h: 38 + lines.length * LINE_H });
       lines.forEach((line, i) => drawText(ctx, line, { x: 100, y: 134 + i * LINE_H }));
       const el = tech.element ? ELEMENT_NAMES[tech.element] : "Físico";
@@ -413,7 +412,7 @@ export class MenuScene implements Scene {
     const st = memberStats(def, m.level);
     drawWindow(ctx, { x: 92, y: 4, w: 160, h: 216 });
     drawFace(ctx, { id: m.id, x: 100, y: 12, color: def.color });
-    drawText(ctx, def.name, { x: 138, y: 14 });
+    drawText(ctx, memberName(m.id), { x: 138, y: 14 });
     drawText(ctx, def.element ? ELEMENT_NAMES[def.element] : "Sin elemento", {
       x: 138,
       y: 28,

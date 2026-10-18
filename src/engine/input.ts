@@ -34,6 +34,20 @@ let anyListener: (() => void) | null = null;
 const padHeld = new Set<Button>();
 let anyNow = false;
 let anyFrame = false;
+let textHandler: ((key: string) => void) | null = null;
+
+/** While set, printable keys and Backspace go to `handler` instead of mapping to buttons. */
+export function setTextCapture(handler: ((key: string) => void) | null): void {
+  textHandler = handler;
+}
+
+function textKey(e: KeyboardEvent): string | null {
+  if (e.key === "Backspace") return e.key;
+  if (e.key.length !== 1) return null;
+  // AltGr reports Ctrl+Alt on Windows, and it types "@" on Spanish keyboards.
+  const plain = !e.ctrlKey && !e.metaKey && !e.altKey;
+  return plain || e.getModifierState("AltGraph") ? e.key : null;
+}
 
 export function initInput(onFirstInput: () => void): void {
   anyListener = onFirstInput;
@@ -41,6 +55,13 @@ export function initInput(onFirstInput: () => void): void {
     const b = KEYMAP[e.code];
     anyListener?.();
     if (!e.repeat) anyNow = true;
+    const text = textHandler ? textKey(e) : null;
+    if (text) {
+      e.preventDefault();
+      // A confirm key still held from the previous screen must not type a letter.
+      if (!e.repeat || text === "Backspace") textHandler?.(text);
+      return;
+    }
     if (!b) return;
     e.preventDefault();
     if (!held.has(b)) pressedNow.add(b);

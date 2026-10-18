@@ -1,3 +1,4 @@
+import { setHeroName } from "../data/party";
 import { SceneStack } from "../engine/scene";
 import { Timers } from "../engine/tween";
 import { newGame, type GameState } from "./state";
@@ -21,6 +22,7 @@ export const game = {
 
 export function setState(s: GameState): void {
   game.state = s;
+  setHeroName(s.heroName);
 }
 
 export function fadeTo(o: { alpha: number; seconds?: number; color?: string }): Promise<void> {

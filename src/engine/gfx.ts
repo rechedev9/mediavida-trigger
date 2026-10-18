@@ -47,6 +47,10 @@ function charWidth(c: string): number {
   return font.widths[i] ?? font.cellW;
 }
 
+export function hasGlyph(c: string): boolean {
+  return font?.index.has(c) ?? false;
+}
+
 export function measureText(text: string): number {
   let w = 0;
   for (const c of text) w += charWidth(c);

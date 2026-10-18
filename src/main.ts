@@ -9,6 +9,7 @@ import { initInput, updateInput } from "./engine/input";
 import { createScreen, SCREEN_H, SCREEN_W } from "./engine/screen";
 import { FieldScene } from "./game/field";
 import { draw, game, setState, update } from "./game/game";
+import { NamingScene } from "./game/naming";
 import { StartScene } from "./game/start";
 import { loadGame, newGame, type GameState } from "./game/state";
 import { TitleScene } from "./game/title";
@@ -69,9 +70,17 @@ function applySettings(s: GameState): void {
   setWindowTheme(s.settings.windowTheme);
 }
 
-async function startGame(o: { load: boolean }): Promise<void> {
+function startGame(o: { load: boolean }): void {
   const saved = o.load ? loadGame() : null;
-  const state = saved ?? newGame();
+  if (saved) {
+    void enterGame(saved);
+    return;
+  }
+  game.timers.clear();
+  game.stack.reset(new NamingScene((heroName) => void enterGame({ ...newGame(), heroName })));
+}
+
+async function enterGame(state: GameState): Promise<void> {
   setState(state);
   applySettings(state);
   game.timers.clear();
@@ -84,7 +93,7 @@ async function startGame(o: { load: boolean }): Promise<void> {
 function showTitle(): void {
   game.timers.clear();
   game.fade.alpha = 1;
-  game.stack.reset(new TitleScene((o) => void startGame(o)));
+  game.stack.reset(new TitleScene(startGame));
 }
 
 async function boot(): Promise<void> {
@@ -95,7 +104,7 @@ async function boot(): Promise<void> {
   initInput(unlockAudio);
   await preload(ctx);
   game.hooks.title = showTitle;
-  game.hooks.continueGame = () => void startGame({ load: true });
+  game.hooks.continueGame = () => startGame({ load: true });
   game.fade.alpha = 0;
   game.stack.reset(new StartScene(showTitle));
 

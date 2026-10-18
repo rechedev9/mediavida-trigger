@@ -1,5 +1,5 @@
 import { MAPS } from "../data/maps";
-import { memberDef } from "../data/party";
+import { cleanHeroName, DEFAULT_HERO_NAME, memberDef } from "../data/party";
 import type { Dir } from "../data/types";
 import { isRecord, num, str } from "../engine/guards";
 import { maxHp, maxMp } from "./combat";
@@ -14,6 +14,7 @@ type Settings = {
 };
 
 export type GameState = {
+  heroName: string;
   members: Record<string, MemberState>;
   /** Joined members in formation order; the first three fight. */
   order: string[];
@@ -38,6 +39,7 @@ function newMember(id: string, level = 1): MemberState {
 
 export function newGame(): GameState {
   return {
+    heroName: DEFAULT_HERO_NAME,
     members: { novato: newMember("novato") },
     order: ["novato"],
     items: { cafe: 3, cerveza: 1 },
@@ -144,6 +146,7 @@ export function parseSave(text: string): GameState | null {
   const dir = DIRS.find((d) => d === s.dir) ?? "down";
   const st: Record<string, unknown> = isRecord(s.settings) ? s.settings : {};
   return {
+    heroName: cleanHeroName(str(s.heroName)),
     members,
     order,
     items: numberRecord(s.items),

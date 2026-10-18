@@ -1,4 +1,4 @@
-import { PARTY } from "./party";
+import { memberName, PARTY } from "./party";
 
 export type Speaker = { name: string; face: string | null; color: string };
 
@@ -21,6 +21,6 @@ export function speaker(id: string): Speaker {
   const npc = NPCS[id];
   if (npc) return npc;
   const m = PARTY.find((p) => p.id === id);
-  if (m) return { name: m.name, face: m.id, color: m.color };
+  if (m) return { name: memberName(m.id), face: m.id, color: m.color };
   return { name: id, face: null, color: "#908070" };
 }
