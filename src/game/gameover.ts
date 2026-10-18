@@ -47,6 +47,6 @@ export class GameOverScene implements Scene {
       color: "#a8a0b8",
     });
     ctx.globalAlpha = 1;
-    if (this.t >= 1.5) this.menu.draw(ctx, { x: 88, y: 130, w: 80, h: 36 });
+    if (this.t >= 1.5) this.menu.draw(ctx, { x: 84, y: 128, w: 88, h: 40 });
   }
 }

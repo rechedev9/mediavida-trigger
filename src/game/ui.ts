@@ -94,7 +94,10 @@ export class ListMenu {
       if (it.right) drawText(ctx, it.right, { x: x + colW - 8, y, color, align: "right" });
       if (i === this.index && focused) drawCursor(ctx, { x, y, t: this.t });
     }
-    if (this.top > 0) drawText(ctx, "^", { x: r.x + r.w - 12, y: r.y + 2 });
-    if (end < this.items.length) drawText(ctx, "v", { x: r.x + r.w - 12, y: r.y + r.h - 12 });
+    // Scroll arrows sit on the frame, centered, so they never touch a value column.
+    const cx = r.x + r.w / 2;
+    if (this.top > 0) drawText(ctx, "^", { x: cx, y: r.y - 2, align: "center", color: "#f8c060" });
+    if (end < this.items.length)
+      drawText(ctx, "v", { x: cx, y: r.y + r.h - 9, align: "center", color: "#f8c060" });
   }
 }

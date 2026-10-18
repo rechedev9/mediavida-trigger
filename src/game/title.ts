@@ -52,7 +52,7 @@ export class TitleScene implements Scene {
     const bob = Math.round(Math.sin(this.t * 1.5) * 2);
     if (logo) {
       const frame = logo.tags.size > 0 ? tagFrame(logo, [...logo.tags.keys()][0] ?? "", this.t) : 0;
-      drawFrame(ctx, logo, { x: SCREEN_W / 2, y: 92 + bob, frame });
+      drawFrame(ctx, logo, { x: SCREEN_W / 2, y: 102 + bob, frame });
     } else {
       drawText(ctx, "MEDIAVIDA TRIGGER", {
         x: SCREEN_W / 2,
@@ -61,7 +61,7 @@ export class TitleScene implements Scene {
         color: "#f88820",
       });
     }
-    if (this.t > 0.8) this.menu.draw(ctx, { x: 76, y: 140, w: 104, h: 36 });
+    if (this.t > 0.8) this.menu.draw(ctx, { x: 70, y: 138, w: 116, h: 40 });
     drawText(ctx, "1999 - 2026  Juego de fans", {
       x: SCREEN_W / 2,
       y: 204,

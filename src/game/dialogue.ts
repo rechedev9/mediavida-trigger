@@ -30,11 +30,13 @@ class DialogueScene implements Scene {
     this.face = sp?.face ?? null;
     this.color = sp?.color ?? "#ffffff";
     this.textX = BOX.x + (this.face ? 44 : 10);
-    const width = BOX.x + BOX.w - 10 - this.textX;
+    const width = BOX.x + BOX.w - 18 - this.textX;
     const lines = wrapText(o.text, width);
     const body = this.name ? LINES - 1 : LINES;
+    // Spread lines evenly so the last page never holds a lone word.
+    const per = Math.max(1, Math.ceil(lines.length / Math.max(1, Math.ceil(lines.length / body))));
     this.pages = [];
-    for (let i = 0; i < lines.length; i += body) this.pages.push(lines.slice(i, i + body));
+    for (let i = 0; i < lines.length; i += per) this.pages.push(lines.slice(i, i + per));
     if (this.pages.length === 0) this.pages.push([]);
     this.menu = o.choices
       ? new ListMenu(
@@ -103,7 +105,7 @@ class DialogueScene implements Scene {
       const h = n * LINE_H + 12;
       this.menu.draw(ctx, { x: BOX.x + BOX.w - 100, y: BOX.y - h - 2, w: 100, h });
     } else if (done && Math.floor(this.blink * 3) % 2 === 0) {
-      drawText(ctx, "v", { x: BOX.x + BOX.w - 14, y: BOX.y + BOX.h - 13, color: "#f8c060" });
+      drawText(ctx, "v", { x: BOX.x + BOX.w - 16, y: BOX.y + BOX.h - 19, color: "#f8c060" });
     }
   }
 }

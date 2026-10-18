@@ -28,6 +28,9 @@ const CREDITS: Line[] = [
 ];
 
 const TOTAL = CREDITS.reduce((s, l) => s + (l.gap ?? 12), 0);
+// Credits scroll above the walking party and fade at both edges of this band.
+const BAND = 184;
+const END_SCROLL = TOTAL + BAND - 96;
 
 export class EndingScene implements Scene {
   readonly transparent = false;
@@ -39,12 +42,12 @@ export class EndingScene implements Scene {
 
   update(dt: number): void {
     this.t += dt;
-    const done = this.scroll() >= TOTAL + SCREEN_H / 2 - 20;
+    const done = this.scroll() >= END_SCROLL;
     if ((done && wasPressed("confirm")) || this.t > 120) game.hooks.title();
   }
 
   private scroll(): number {
-    return Math.min(TOTAL + SCREEN_H / 2 - 20, this.t * 14);
+    return Math.min(END_SCROLL, this.t * 14);
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
@@ -56,15 +59,19 @@ export class EndingScene implements Scene {
       ctx.fillStyle = i % 4 === 0 ? "#f88820" : "#484868";
       ctx.fillRect(x, y, 1, 1);
     }
-    let y = SCREEN_H - this.scroll();
+    let y = BAND - this.scroll();
     for (const line of CREDITS) {
-      if (y > -12 && y < SCREEN_H)
+      const fade = Math.min(1, (BAND - 12 - y) / 16, (y - 4) / 16);
+      if (fade > 0) {
+        ctx.globalAlpha = fade;
         drawText(ctx, line.text, {
           x: SCREEN_W / 2,
           y,
           align: "center",
           color: line.color ?? "#d8d0e0",
         });
+        ctx.globalAlpha = 1;
+      }
       y += line.gap ?? 12;
     }
     PARTY.forEach((m, i) => {

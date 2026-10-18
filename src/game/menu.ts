@@ -3,7 +3,14 @@ import { itemDef } from "../data/items";
 import { memberDef } from "../data/party";
 import { techDef } from "../data/techs";
 import { ELEMENT_NAMES, STAT_NAMES, type Stats, type TechDef } from "../data/types";
-import { drawText, drawWindow, LINE_H, setWindowTheme, WINDOW_THEMES } from "../engine/gfx";
+import {
+  drawText,
+  drawWindow,
+  LINE_H,
+  setWindowTheme,
+  WINDOW_THEMES,
+  wrapText,
+} from "../engine/gfx";
 import { wasPressed, wasRepeated } from "../engine/input";
 import type { Scene } from "../engine/scene";
 import { healAmount, maxHp, maxMp, memberStats, xpToNext } from "./combat";
@@ -325,45 +332,47 @@ export class MenuScene implements Scene {
     else this.drawParty(ctx);
     if (this.mode === "who" && (this.whoFor === "item" || this.whoFor === "tech-use"))
       this.drawPartyPicker(ctx);
-    if (this.message) {
-      drawWindow(ctx, { x: 4, y: 92, w: 84, h: 64 });
-      drawText(ctx, this.message.slice(0, 13), { x: 10, y: 98 });
-      drawText(ctx, this.message.slice(13, 26), { x: 10, y: 110 });
-      drawText(ctx, this.message.slice(26, 39), { x: 10, y: 122 });
-    }
+    if (this.message) this.drawNote(ctx, this.message);
   }
 
   private drawParty(ctx: CanvasRenderingContext2D): void {
     drawWindow(ctx, { x: 92, y: 4, w: 160, h: 216 });
     this.members.forEach((m, i) => {
       const def = memberDef(m.id);
-      const y = 10 + i * 30;
-      if (y > 190) return;
-      drawFace(ctx, { id: m.id, x: 100, y, color: def.color });
+      const y = 13 + i * 28;
+      if (i === 3) {
+        ctx.fillStyle = "#585068";
+        ctx.fillRect(100, y - 2, 144, 1);
+      }
+      drawFace(ctx, { id: m.id, x: 100, y, color: def.color, h: 26 });
       const color = i < 3 ? "#f8f8f8" : "#a8a0b8";
-      drawText(ctx, def.name, { x: 136, y, color });
-      drawText(ctx, `Nv ${m.level}`, { x: 246, y, align: "right", color: "#f8c060" });
+      const marked = this.mode === "order" && this.swapFirst === i;
+      drawText(ctx, def.name, { x: 136, y: y + 1, color: marked ? "#60e0f8" : color });
+      drawText(ctx, `Nv ${m.level}`, { x: 244, y: y + 1, align: "right", color: "#f8c060" });
       drawText(ctx, `PV ${m.hp}/${maxHp(def, m.level)}`, {
         x: 136,
-        y: y + 10,
+        y: y + 13,
         color: m.hp <= 0 ? "#f86060" : color,
       });
-      drawText(ctx, `PM ${m.mp}/${maxMp(def, m.level)}`, { x: 136, y: y + 19, color });
+      drawText(ctx, `PM ${m.mp}`, { x: 244, y: y + 13, align: "right", color });
       const picking = this.mode === "who" || this.mode === "order";
-      if (picking && i === this.who) drawCursor(ctx, { x: 104, y: y + 10, t: this.t });
-      if (this.mode === "order" && this.swapFirst === i)
-        drawText(ctx, "*", { x: 94, y: y + 10, color: "#f8c060" });
+      if (picking && i === this.who) drawCursor(ctx, { x: 104, y: y + 7, t: this.t });
     });
-    if (this.mode === "order")
-      drawText(ctx, "Los 3 primeros luchan", { x: 172, y: 206, align: "center", color: "#a8a0b8" });
+    if (this.mode === "order") this.drawNote(ctx, "Luchan los 3 primeros.");
+  }
+
+  private drawNote(ctx: CanvasRenderingContext2D, text: string): void {
+    drawWindow(ctx, { x: 4, y: 92, w: 84, h: 64 });
+    wrapText(text, 68)
+      .slice(0, 4)
+      .forEach((line, i) => drawText(ctx, line, { x: 12, y: 98 + i * LINE_H }));
   }
 
   private drawPartyPicker(ctx: CanvasRenderingContext2D): void {
-    drawWindow(ctx, { x: 120, y: 120, w: 132, h: 100 });
+    drawWindow(ctx, { x: 120, y: 124, w: 132, h: 96 });
     this.members.forEach((m, i) => {
       const def = memberDef(m.id);
-      const y = 126 + i * LINE_H;
-      if (y > 206) return;
+      const y = 130 + i * LINE_H;
       drawText(ctx, def.name, { x: 138, y, color: m.hp <= 0 ? "#f86060" : "#f8f8f8" });
       drawText(ctx, String(m.hp), { x: 244, y, align: "right" });
       if (i === this.who) drawCursor(ctx, { x: 138, y, t: this.t });
@@ -373,9 +382,11 @@ export class MenuScene implements Scene {
   private drawItems(ctx: CanvasRenderingContext2D): void {
     this.list.draw(ctx, { x: 92, y: 4, w: 160, h: 122 }, this.mode === "items");
     const item = itemDef(this.itemIds[this.list.index] ?? "");
-    if (item) {
-      drawWindow(ctx, { x: 92, y: 128, w: 160, h: this.mode === "who" ? 0 : 40 });
-      if (this.mode !== "who") drawText(ctx, item.desc, { x: 100, y: 134 });
+    if (item && this.mode !== "who") {
+      drawWindow(ctx, { x: 92, y: 128, w: 160, h: 40 });
+      wrapText(item.desc, 144)
+        .slice(0, 2)
+        .forEach((line, i) => drawText(ctx, line, { x: 100, y: 134 + i * LINE_H }));
     }
   }
 
@@ -383,10 +394,15 @@ export class MenuScene implements Scene {
     this.list.draw(ctx, { x: 92, y: 4, w: 160, h: 122 }, this.mode === "techs");
     const tech = this.techs[this.list.index];
     if (tech && this.mode === "techs") {
-      drawWindow(ctx, { x: 92, y: 128, w: 160, h: 48 });
-      drawText(ctx, tech.desc, { x: 100, y: 134 });
+      const lines = wrapText(tech.desc, 144).slice(0, 2);
+      drawWindow(ctx, { x: 92, y: 128, w: 160, h: 38 + lines.length * LINE_H });
+      lines.forEach((line, i) => drawText(ctx, line, { x: 100, y: 134 + i * LINE_H }));
       const el = tech.element ? ELEMENT_NAMES[tech.element] : "Físico";
-      drawText(ctx, `${el}  PM ${tech.mp}`, { x: 100, y: 148, color: "#a8a0b8" });
+      drawText(ctx, `${el}  PM ${tech.mp}`, {
+        x: 100,
+        y: 138 + lines.length * LINE_H,
+        color: "#a8a0b8",
+      });
     }
   }
 
@@ -397,13 +413,13 @@ export class MenuScene implements Scene {
     const st = memberStats(def, m.level);
     drawWindow(ctx, { x: 92, y: 4, w: 160, h: 216 });
     drawFace(ctx, { id: m.id, x: 100, y: 12, color: def.color });
-    drawText(ctx, def.name, { x: 138, y: 12 });
-    drawText(ctx, def.title, { x: 138, y: 24, color: "#f8c060" });
+    drawText(ctx, def.name, { x: 138, y: 14 });
     drawText(ctx, def.element ? ELEMENT_NAMES[def.element] : "Sin elemento", {
       x: 138,
-      y: 36,
+      y: 28,
       color: "#a8a0b8",
     });
+    drawText(ctx, def.title, { x: 102, y: 46, color: "#f8c060" });
     const rows: [string, string][] = [
       ["Nivel", String(m.level)],
       ["PV", `${m.hp}/${maxHp(def, m.level)}`],
@@ -421,7 +437,7 @@ export class MenuScene implements Scene {
     ];
     for (const k of keys) rows.push([STAT_NAMES[k], String(st[k])]);
     rows.forEach(([label, value], i) => {
-      const y = 52 + i * 14;
+      const y = 62 + i * 13;
       drawText(ctx, label, { x: 102, y, color: "#a8a0b8" });
       drawText(ctx, value, { x: 242, y, align: "right" });
     });

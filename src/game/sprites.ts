@@ -67,17 +67,19 @@ function drawPlaceholder(ctx: CanvasRenderingContext2D, a: ActorDraw): void {
 
 export function drawFace(
   ctx: CanvasRenderingContext2D,
-  o: { id: string; x: number; y: number; color: string },
+  o: { id: string; x: number; y: number; color: string; h?: number },
 ): void {
   const img = getImage(`faces/${o.id}`);
+  const h = o.h ?? 32;
   if (img) {
-    ctx.drawImage(img, o.x, o.y);
+    // A shorter face keeps the middle rows, so eyes and mouth stay in view.
+    ctx.drawImage(img, 0, Math.floor((32 - h) / 2), 32, h, o.x, o.y, 32, h);
     return;
   }
   ctx.fillStyle = "#181010";
-  ctx.fillRect(o.x, o.y, 32, 32);
+  ctx.fillRect(o.x, o.y, 32, h);
   ctx.fillStyle = o.color;
-  ctx.fillRect(o.x + 1, o.y + 1, 30, 30);
+  ctx.fillRect(o.x + 1, o.y + 1, 30, h - 2);
   ctx.fillStyle = "#f8d8b0";
   ctx.fillRect(o.x + 8, o.y + 6, 16, 16);
 }

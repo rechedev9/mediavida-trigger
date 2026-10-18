@@ -4,7 +4,7 @@ import { itemDef } from "../data/items";
 import { memberDef } from "../data/party";
 import { comboTechs, techDef } from "../data/techs";
 import type { EnemyAttack, EnemyDef, FxId, ItemDef, Stats, TechDef } from "../data/types";
-import { drawBar, drawText, drawWindow, LINE_H, measureText } from "../engine/gfx";
+import { drawBar, drawText, drawWindow, LINE_H, measureText, wrapText } from "../engine/gfx";
 import { isHeld, wasPressed, wasRepeated } from "../engine/input";
 import type { Scene } from "../engine/scene";
 import { SCREEN_H, SCREEN_W } from "../engine/screen";
@@ -968,11 +968,12 @@ export class BattleScene implements Scene {
     this.command.draw(ctx, box, this.ui === "command");
     if (this.ui === "techs" || this.ui === "items") {
       // Top of the screen keeps the party and the status panel visible.
-      this.list.draw(ctx, { x: 4, y: 30, w: 248, h: 56 });
-      const desc = this.currentDesc();
-      if (desc) {
-        drawWindow(ctx, { x: 4, y: 6, w: 248, h: 22 });
-        drawText(ctx, desc, { x: 12, y: 11 });
+      const lines = wrapText(this.currentDesc(), 232).filter(Boolean).slice(0, 2);
+      const barH = lines.length > 1 ? 34 : 22;
+      this.list.draw(ctx, { x: 4, y: 8 + barH, w: 248, h: 62 });
+      if (lines.length > 0) {
+        drawWindow(ctx, { x: 4, y: 6, w: 248, h: barH });
+        lines.forEach((line, i) => drawText(ctx, line, { x: 12, y: 11 + i * LINE_H }));
       }
     }
     if (this.ui === "target") {
