@@ -304,146 +304,150 @@
       "index": 92,
       "solid": false
     },
-    "roof-peak": {
+    "door-top": {
       "index": 93,
       "solid": true
     },
-    "roof": {
+    "roof-peak": {
       "index": 94,
       "solid": true
     },
-    "roof-edge": {
+    "roof": {
       "index": 95,
+      "solid": true
+    },
+    "roof-edge": {
+      "index": 96,
       "solid": true,
       "over": true
     },
     "tree": {
-      "index": 96,
+      "index": 97,
       "solid": true
     },
     "tree-top": {
-      "index": 97,
+      "index": 98,
       "solid": false,
       "over": true
     },
     "bush": {
-      "index": 98,
-      "solid": true
-    },
-    "fence": {
       "index": 99,
       "solid": true
     },
-    "counter": {
+    "fence": {
       "index": 100,
       "solid": true
     },
-    "counter-l": {
+    "counter": {
       "index": 101,
       "solid": true
     },
-    "counter-r": {
+    "counter-l": {
       "index": 102,
       "solid": true
     },
-    "awning": {
+    "counter-r": {
       "index": 103,
-      "solid": false
+      "solid": true
     },
-    "awning-l": {
+    "awning": {
       "index": 104,
       "solid": false
     },
-    "awning-r": {
+    "awning-l": {
       "index": 105,
       "solid": false
     },
-    "lamp": {
+    "awning-r": {
       "index": 106,
+      "solid": false
+    },
+    "lamp": {
+      "index": 107,
       "solid": true
     },
     "fountain": {
-      "index": 107,
+      "index": 108,
       "solid": true,
       "frames": [
-        107,
         108,
         109,
-        110
+        110,
+        111
       ],
       "fps": 6
     },
     "fountain-nw": {
-      "index": 111,
+      "index": 112,
       "solid": true,
       "frames": [
-        111,
         112,
         113,
-        114
+        114,
+        115
       ],
       "fps": 6
     },
     "fountain-ne": {
-      "index": 115,
+      "index": 116,
       "solid": true,
       "frames": [
-        115,
         116,
         117,
-        118
+        118,
+        119
       ],
       "fps": 6
     },
     "fountain-sw": {
-      "index": 119,
+      "index": 120,
       "solid": true,
       "frames": [
-        119,
         120,
         121,
-        122
+        122,
+        123
       ],
       "fps": 6
     },
     "fountain-se": {
-      "index": 123,
+      "index": 124,
       "solid": true,
       "frames": [
-        123,
         124,
         125,
-        126
+        126,
+        127
       ],
       "fps": 6
     },
     "sign": {
-      "index": 127,
+      "index": 128,
       "solid": true
     },
     "banner": {
-      "index": 128,
+      "index": 129,
       "solid": true,
       "frames": [
-        128,
-        129
+        129,
+        130
       ],
       "fps": 3
     },
     "barrel": {
-      "index": 130,
-      "solid": true
-    },
-    "crate": {
       "index": 131,
       "solid": true
     },
-    "flowerbed": {
+    "crate": {
       "index": 132,
       "solid": true
     },
-    "rock": {
+    "flowerbed": {
       "index": 133,
+      "solid": true
+    },
+    "rock": {
+      "index": 134,
       "solid": true
     }
   }

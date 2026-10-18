@@ -300,170 +300,174 @@
       "index": 91,
       "solid": false
     },
-    "roof-peak": {
+    "door-top": {
       "index": 92,
       "solid": true
     },
-    "roof": {
+    "roof-peak": {
       "index": 93,
       "solid": true
     },
-    "roof-edge": {
+    "roof": {
       "index": 94,
+      "solid": true
+    },
+    "roof-edge": {
+      "index": 95,
       "solid": true,
       "over": true
     },
     "tree": {
-      "index": 95,
+      "index": 96,
       "solid": true
     },
     "tree-top": {
-      "index": 96,
+      "index": 97,
       "solid": false,
       "over": true
     },
     "hedge": {
-      "index": 97,
-      "solid": true
-    },
-    "fence": {
       "index": 98,
       "solid": true
     },
-    "well": {
+    "fence": {
       "index": 99,
+      "solid": true
+    },
+    "well": {
+      "index": 100,
       "solid": true,
       "frames": [
-        99,
-        100
+        100,
+        101
       ],
       "fps": 2
     },
     "barrel": {
-      "index": 101,
-      "solid": true
-    },
-    "bush": {
       "index": 102,
       "solid": true
     },
-    "flowerbed": {
+    "bush": {
       "index": 103,
       "solid": true
     },
-    "mfloor": {
+    "flowerbed": {
       "index": 104,
-      "solid": false
+      "solid": true
     },
-    "mfloor-2": {
+    "mfloor": {
       "index": 105,
       "solid": false
     },
-    "carpet": {
+    "mfloor-2": {
       "index": 106,
       "solid": false
     },
-    "carpet-n": {
+    "carpet": {
       "index": 107,
       "solid": false
     },
-    "carpet-s": {
+    "carpet-n": {
       "index": 108,
       "solid": false
     },
-    "carpet-w": {
+    "carpet-s": {
       "index": 109,
       "solid": false
     },
-    "carpet-e": {
+    "carpet-w": {
       "index": 110,
       "solid": false
     },
-    "carpet-nw": {
+    "carpet-e": {
       "index": 111,
       "solid": false
     },
-    "carpet-ne": {
+    "carpet-nw": {
       "index": 112,
       "solid": false
     },
-    "carpet-sw": {
+    "carpet-ne": {
       "index": 113,
       "solid": false
     },
-    "carpet-se": {
+    "carpet-sw": {
       "index": 114,
       "solid": false
     },
-    "carpet-inw": {
+    "carpet-se": {
       "index": 115,
       "solid": false
     },
-    "carpet-ine": {
+    "carpet-inw": {
       "index": 116,
       "solid": false
     },
-    "carpet-isw": {
+    "carpet-ine": {
       "index": 117,
       "solid": false
     },
-    "carpet-ise": {
+    "carpet-isw": {
       "index": 118,
       "solid": false
     },
-    "mwall": {
+    "carpet-ise": {
       "index": 119,
+      "solid": false
+    },
+    "mwall": {
+      "index": 120,
       "solid": true
     },
     "mdoor": {
-      "index": 120,
+      "index": 121,
       "solid": false
     },
     "books": {
-      "index": 121,
-      "solid": true
-    },
-    "painting": {
       "index": 122,
       "solid": true
     },
-    "candle": {
+    "painting": {
       "index": 123,
+      "solid": true
+    },
+    "candle": {
+      "index": 124,
       "solid": true,
       "frames": [
-        123,
         124,
         125,
-        126
+        126,
+        127
       ],
       "fps": 6
     },
     "table": {
-      "index": 127,
-      "solid": true
-    },
-    "table-nw": {
       "index": 128,
       "solid": true
     },
-    "table-ne": {
+    "table-nw": {
       "index": 129,
       "solid": true
     },
-    "table-sw": {
+    "table-ne": {
       "index": 130,
       "solid": true
     },
-    "table-se": {
+    "table-sw": {
       "index": 131,
       "solid": true
     },
-    "safe": {
+    "table-se": {
       "index": 132,
       "solid": true
     },
-    "armchair": {
+    "safe": {
       "index": 133,
+      "solid": true
+    },
+    "armchair": {
+      "index": 134,
       "solid": true
     }
   }

@@ -6,86 +6,87 @@ Sheets are `public/assets/tiles/<set>.png`, 16x16 tiles, 16 per row. `index` is 
 animated tiles use the following frames. Edge sets (`<prefix>-n` ... `-ise`) blend two grounds:
 the plain suffix is the side where the outer ground shows, `i*` tiles are inner corners.
 
-## plaza (76 tiles, 134 frames)
+## plaza (77 tiles, 135 frames)
 
-| index | name             | flags         | description                                                   |
-| ----- | ---------------- | ------------- | ------------------------------------------------------------- |
-| 0     | `chest`          | solid         | Closed treasure chest (drawn over the ground)                 |
-| 1     | `chest-open`     | solid         | Opened treasure chest                                         |
-| 2     | `save`           | anim 4        | Save point: a pinned thread card hovering over a glowing ring |
-| 6     | `grass`          |               | Short grass with tufts                                        |
-| 7     | `grass-2`        |               | Grass variant, mix it in to break repeats                     |
-| 8     | `grass-flower`   |               | Grass with small flowers                                      |
-| 9     | `grass-flower-2` |               | Grass with flowers, variant                                   |
-| 10    | `path`           |               | Packed dirt path                                              |
-| 11    | `path-2`         |               | Dirt path variant with pebbles                                |
-| 12    | `stone`          |               | Plaza paving stones                                           |
-| 13    | `stone-2`        |               | Paving variant                                                |
-| 14    | `water`          | solid, anim 4 | Pond water                                                    |
-| 18    | `path-n`         |               | Dirt path meeting grass: north border                         |
-| 19    | `path-s`         |               | Dirt path meeting grass: south border                         |
-| 20    | `path-w`         |               | Dirt path meeting grass: west border                          |
-| 21    | `path-e`         |               | Dirt path meeting grass: east border                          |
-| 22    | `path-nw`        |               | Dirt path meeting grass: outer corner NW                      |
-| 23    | `path-ne`        |               | Dirt path meeting grass: outer corner NE                      |
-| 24    | `path-sw`        |               | Dirt path meeting grass: outer corner SW                      |
-| 25    | `path-se`        |               | Dirt path meeting grass: outer corner SE                      |
-| 26    | `path-inw`       |               | Dirt path meeting grass: inner corner, notch NW               |
-| 27    | `path-ine`       |               | Dirt path meeting grass: inner corner, notch NE               |
-| 28    | `path-isw`       |               | Dirt path meeting grass: inner corner, notch SW               |
-| 29    | `path-ise`       |               | Dirt path meeting grass: inner corner, notch SE               |
-| 30    | `paving-n`       |               | Paving meeting grass: north border                            |
-| 31    | `paving-s`       |               | Paving meeting grass: south border                            |
-| 32    | `paving-w`       |               | Paving meeting grass: west border                             |
-| 33    | `paving-e`       |               | Paving meeting grass: east border                             |
-| 34    | `paving-nw`      |               | Paving meeting grass: outer corner NW                         |
-| 35    | `paving-ne`      |               | Paving meeting grass: outer corner NE                         |
-| 36    | `paving-sw`      |               | Paving meeting grass: outer corner SW                         |
-| 37    | `paving-se`      |               | Paving meeting grass: outer corner SE                         |
-| 38    | `paving-inw`     |               | Paving meeting grass: inner corner, notch NW                  |
-| 39    | `paving-ine`     |               | Paving meeting grass: inner corner, notch NE                  |
-| 40    | `paving-isw`     |               | Paving meeting grass: inner corner, notch SW                  |
-| 41    | `paving-ise`     |               | Paving meeting grass: inner corner, notch SE                  |
-| 42    | `shore-n`        | solid, anim 4 | Pond water meeting grass: north border                        |
-| 46    | `shore-s`        | solid, anim 4 | Pond water meeting grass: south border                        |
-| 50    | `shore-w`        | solid, anim 4 | Pond water meeting grass: west border                         |
-| 54    | `shore-e`        | solid, anim 4 | Pond water meeting grass: east border                         |
-| 58    | `shore-nw`       | solid, anim 4 | Pond water meeting grass: outer corner NW                     |
-| 62    | `shore-ne`       | solid, anim 4 | Pond water meeting grass: outer corner NE                     |
-| 66    | `shore-sw`       | solid, anim 4 | Pond water meeting grass: outer corner SW                     |
-| 70    | `shore-se`       | solid, anim 4 | Pond water meeting grass: outer corner SE                     |
-| 74    | `shore-inw`      | solid, anim 4 | Pond water meeting grass: inner corner, notch NW              |
-| 78    | `shore-ine`      | solid, anim 4 | Pond water meeting grass: inner corner, notch NE              |
-| 82    | `shore-isw`      | solid, anim 4 | Pond water meeting grass: inner corner, notch SW              |
-| 86    | `shore-ise`      | solid, anim 4 | Pond water meeting grass: inner corner, notch SE              |
-| 90    | `wall`           | solid         | Half-timbered plaster wall                                    |
-| 91    | `window`         | solid         | Wall with shuttered window and flower box                     |
-| 92    | `door`           |               | Wooden arched door (walkable, use for warps)                  |
-| 93    | `roof-peak`      | solid         | Roof ridge, top row of a roof                                 |
-| 94    | `roof`           | solid         | Clay shingle roof, tiles vertically                           |
-| 95    | `roof-edge`      | solid, over   | Bottom row of a roof with the eave                            |
-| 96    | `tree`           | solid         | Tree trunk and lower crown (put tree-top above)               |
-| 97    | `tree-top`       | over          | Tree crown, drawn over characters                             |
-| 98    | `bush`           | solid         | Round bush with berries                                       |
-| 99    | `fence`          | solid         | Wooden fence, tiles horizontally                              |
-| 100   | `counter`        | solid         | Market stall counter with produce                             |
-| 101   | `counter-l`      | solid         | Market counter, left end                                      |
-| 102   | `counter-r`      | solid         | Market counter, right end                                     |
-| 103   | `awning`         |               | Striped stall awning, drawn behind the stall keeper           |
-| 104   | `awning-l`       |               | Awning, left end                                              |
-| 105   | `awning-r`       |               | Awning, right end                                             |
-| 106   | `lamp`           | solid         | Iron street lamp                                              |
-| 107   | `fountain`       | solid, anim 4 | Small one-tile fountain on paving                             |
-| 111   | `fountain-nw`    | solid, anim 4 | Big 2x2 fountain, NW quarter                                  |
-| 115   | `fountain-ne`    | solid, anim 4 | Big 2x2 fountain, NE quarter                                  |
-| 119   | `fountain-sw`    | solid, anim 4 | Big 2x2 fountain, SW quarter                                  |
-| 123   | `fountain-se`    | solid, anim 4 | Big 2x2 fountain, SE quarter                                  |
-| 127   | `sign`           | solid         | Wooden notice board                                           |
-| 128   | `banner`         | solid, anim 2 | Fair banner on a pole                                         |
-| 130   | `barrel`         | solid         | Wooden barrel                                                 |
-| 131   | `crate`          | solid         | Wooden crate                                                  |
-| 132   | `flowerbed`      | solid         | Stone planter with flowers                                    |
-| 133   | `rock`           | solid         | Boulder                                                       |
+| index | name             | flags         | description                                                           |
+| ----- | ---------------- | ------------- | --------------------------------------------------------------------- |
+| 0     | `chest`          | solid         | Closed treasure chest (drawn over the ground)                         |
+| 1     | `chest-open`     | solid         | Opened treasure chest                                                 |
+| 2     | `save`           | anim 4        | Save point: a pinned thread card hovering over a glowing ring         |
+| 6     | `grass`          |               | Short grass with tufts                                                |
+| 7     | `grass-2`        |               | Grass variant, mix it in to break repeats                             |
+| 8     | `grass-flower`   |               | Grass with small flowers                                              |
+| 9     | `grass-flower-2` |               | Grass with flowers, variant                                           |
+| 10    | `path`           |               | Packed dirt path                                                      |
+| 11    | `path-2`         |               | Dirt path variant with pebbles                                        |
+| 12    | `stone`          |               | Plaza paving stones                                                   |
+| 13    | `stone-2`        |               | Paving variant                                                        |
+| 14    | `water`          | solid, anim 4 | Pond water                                                            |
+| 18    | `path-n`         |               | Dirt path meeting grass: north border                                 |
+| 19    | `path-s`         |               | Dirt path meeting grass: south border                                 |
+| 20    | `path-w`         |               | Dirt path meeting grass: west border                                  |
+| 21    | `path-e`         |               | Dirt path meeting grass: east border                                  |
+| 22    | `path-nw`        |               | Dirt path meeting grass: outer corner NW                              |
+| 23    | `path-ne`        |               | Dirt path meeting grass: outer corner NE                              |
+| 24    | `path-sw`        |               | Dirt path meeting grass: outer corner SW                              |
+| 25    | `path-se`        |               | Dirt path meeting grass: outer corner SE                              |
+| 26    | `path-inw`       |               | Dirt path meeting grass: inner corner, notch NW                       |
+| 27    | `path-ine`       |               | Dirt path meeting grass: inner corner, notch NE                       |
+| 28    | `path-isw`       |               | Dirt path meeting grass: inner corner, notch SW                       |
+| 29    | `path-ise`       |               | Dirt path meeting grass: inner corner, notch SE                       |
+| 30    | `paving-n`       |               | Paving meeting grass: north border                                    |
+| 31    | `paving-s`       |               | Paving meeting grass: south border                                    |
+| 32    | `paving-w`       |               | Paving meeting grass: west border                                     |
+| 33    | `paving-e`       |               | Paving meeting grass: east border                                     |
+| 34    | `paving-nw`      |               | Paving meeting grass: outer corner NW                                 |
+| 35    | `paving-ne`      |               | Paving meeting grass: outer corner NE                                 |
+| 36    | `paving-sw`      |               | Paving meeting grass: outer corner SW                                 |
+| 37    | `paving-se`      |               | Paving meeting grass: outer corner SE                                 |
+| 38    | `paving-inw`     |               | Paving meeting grass: inner corner, notch NW                          |
+| 39    | `paving-ine`     |               | Paving meeting grass: inner corner, notch NE                          |
+| 40    | `paving-isw`     |               | Paving meeting grass: inner corner, notch SW                          |
+| 41    | `paving-ise`     |               | Paving meeting grass: inner corner, notch SE                          |
+| 42    | `shore-n`        | solid, anim 4 | Pond water meeting grass: north border                                |
+| 46    | `shore-s`        | solid, anim 4 | Pond water meeting grass: south border                                |
+| 50    | `shore-w`        | solid, anim 4 | Pond water meeting grass: west border                                 |
+| 54    | `shore-e`        | solid, anim 4 | Pond water meeting grass: east border                                 |
+| 58    | `shore-nw`       | solid, anim 4 | Pond water meeting grass: outer corner NW                             |
+| 62    | `shore-ne`       | solid, anim 4 | Pond water meeting grass: outer corner NE                             |
+| 66    | `shore-sw`       | solid, anim 4 | Pond water meeting grass: outer corner SW                             |
+| 70    | `shore-se`       | solid, anim 4 | Pond water meeting grass: outer corner SE                             |
+| 74    | `shore-inw`      | solid, anim 4 | Pond water meeting grass: inner corner, notch NW                      |
+| 78    | `shore-ine`      | solid, anim 4 | Pond water meeting grass: inner corner, notch NE                      |
+| 82    | `shore-isw`      | solid, anim 4 | Pond water meeting grass: inner corner, notch SW                      |
+| 86    | `shore-ise`      | solid, anim 4 | Pond water meeting grass: inner corner, notch SE                      |
+| 90    | `wall`           | solid         | Half-timbered plaster wall                                            |
+| 91    | `window`         | solid         | Wall with shuttered window and flower box                             |
+| 92    | `door`           |               | Wooden door, lower half (walkable, use for warps; put door-top above) |
+| 93    | `door-top`       | solid         | Upper half of the door under a raised eave                            |
+| 94    | `roof-peak`      | solid         | Roof ridge, top row of a roof                                         |
+| 95    | `roof`           | solid         | Clay shingle roof, tiles vertically                                   |
+| 96    | `roof-edge`      | solid, over   | Bottom row of a roof with the eave                                    |
+| 97    | `tree`           | solid         | Tree trunk and lower crown (put tree-top above)                       |
+| 98    | `tree-top`       | over          | Tree crown, drawn over characters                                     |
+| 99    | `bush`           | solid         | Round bush with berries                                               |
+| 100   | `fence`          | solid         | Wooden fence, tiles horizontally                                      |
+| 101   | `counter`        | solid         | Market stall counter with produce                                     |
+| 102   | `counter-l`      | solid         | Market counter, left end                                              |
+| 103   | `counter-r`      | solid         | Market counter, right end                                             |
+| 104   | `awning`         |               | Striped stall awning, drawn behind the stall keeper                   |
+| 105   | `awning-l`       |               | Awning, left end                                                      |
+| 106   | `awning-r`       |               | Awning, right end                                                     |
+| 107   | `lamp`           | solid         | Iron street lamp                                                      |
+| 108   | `fountain`       | solid, anim 4 | Small one-tile fountain on paving                                     |
+| 112   | `fountain-nw`    | solid, anim 4 | Big 2x2 fountain, NW quarter                                          |
+| 116   | `fountain-ne`    | solid, anim 4 | Big 2x2 fountain, NE quarter                                          |
+| 120   | `fountain-sw`    | solid, anim 4 | Big 2x2 fountain, SW quarter                                          |
+| 124   | `fountain-se`    | solid, anim 4 | Big 2x2 fountain, SE quarter                                          |
+| 128   | `sign`           | solid         | Wooden notice board                                                   |
+| 129   | `banner`         | solid, anim 2 | Fair banner on a pole                                                 |
+| 131   | `barrel`         | solid         | Wooden barrel                                                         |
+| 132   | `crate`          | solid         | Wooden crate                                                          |
+| 133   | `flowerbed`      | solid         | Stone planter with flowers                                            |
+| 134   | `rock`           | solid         | Boulder                                                               |
 
 ## lan (42 tiles, 56 frames)
 
@@ -134,98 +135,99 @@ the plain suffix is the side where the outer ground shows, `i*` tiles are inner 
 | 53    | `vending`    | solid, anim 2 | Vending machine                                               |
 | 55    | `pizza`      |               | Pizza box on the floor                                        |
 
-## oro (88 tiles, 134 frames)
+## oro (89 tiles, 135 frames)
 
-| index | name           | flags         | description                                                   |
-| ----- | -------------- | ------------- | ------------------------------------------------------------- |
-| 0     | `chest`        | solid         | Closed treasure chest (drawn over the ground)                 |
-| 1     | `chest-open`   | solid         | Opened treasure chest                                         |
-| 2     | `save`         | anim 4        | Save point: a pinned thread card hovering over a glowing ring |
-| 6     | `grass`        |               | Golden meadow grass                                           |
-| 7     | `grass-2`      |               | Golden grass variant                                          |
-| 8     | `grass-flower` |               | Golden grass with flowers                                     |
-| 9     | `path`         |               | Dirt road                                                     |
-| 10    | `path-2`       |               | Dirt road variant                                             |
-| 11    | `cobble`       |               | Old cobblestones                                              |
-| 12    | `cobble-2`     |               | Cobblestones variant                                          |
-| 13    | `water`        | solid, anim 4 | Pond water                                                    |
-| 17    | `path-n`       |               | Dirt road meeting grass: north border                         |
-| 18    | `path-s`       |               | Dirt road meeting grass: south border                         |
-| 19    | `path-w`       |               | Dirt road meeting grass: west border                          |
-| 20    | `path-e`       |               | Dirt road meeting grass: east border                          |
-| 21    | `path-nw`      |               | Dirt road meeting grass: outer corner NW                      |
-| 22    | `path-ne`      |               | Dirt road meeting grass: outer corner NE                      |
-| 23    | `path-sw`      |               | Dirt road meeting grass: outer corner SW                      |
-| 24    | `path-se`      |               | Dirt road meeting grass: outer corner SE                      |
-| 25    | `path-inw`     |               | Dirt road meeting grass: inner corner, notch NW               |
-| 26    | `path-ine`     |               | Dirt road meeting grass: inner corner, notch NE               |
-| 27    | `path-isw`     |               | Dirt road meeting grass: inner corner, notch SW               |
-| 28    | `path-ise`     |               | Dirt road meeting grass: inner corner, notch SE               |
-| 29    | `cobble-n`     |               | Cobbles meeting grass: north border                           |
-| 30    | `cobble-s`     |               | Cobbles meeting grass: south border                           |
-| 31    | `cobble-w`     |               | Cobbles meeting grass: west border                            |
-| 32    | `cobble-e`     |               | Cobbles meeting grass: east border                            |
-| 33    | `cobble-nw`    |               | Cobbles meeting grass: outer corner NW                        |
-| 34    | `cobble-ne`    |               | Cobbles meeting grass: outer corner NE                        |
-| 35    | `cobble-sw`    |               | Cobbles meeting grass: outer corner SW                        |
-| 36    | `cobble-se`    |               | Cobbles meeting grass: outer corner SE                        |
-| 37    | `cobble-inw`   |               | Cobbles meeting grass: inner corner, notch NW                 |
-| 38    | `cobble-ine`   |               | Cobbles meeting grass: inner corner, notch NE                 |
-| 39    | `cobble-isw`   |               | Cobbles meeting grass: inner corner, notch SW                 |
-| 40    | `cobble-ise`   |               | Cobbles meeting grass: inner corner, notch SE                 |
-| 41    | `shore-n`      | solid, anim 4 | Pond water meeting grass: north border                        |
-| 45    | `shore-s`      | solid, anim 4 | Pond water meeting grass: south border                        |
-| 49    | `shore-w`      | solid, anim 4 | Pond water meeting grass: west border                         |
-| 53    | `shore-e`      | solid, anim 4 | Pond water meeting grass: east border                         |
-| 57    | `shore-nw`     | solid, anim 4 | Pond water meeting grass: outer corner NW                     |
-| 61    | `shore-ne`     | solid, anim 4 | Pond water meeting grass: outer corner NE                     |
-| 65    | `shore-sw`     | solid, anim 4 | Pond water meeting grass: outer corner SW                     |
-| 69    | `shore-se`     | solid, anim 4 | Pond water meeting grass: outer corner SE                     |
-| 73    | `shore-inw`    | solid, anim 4 | Pond water meeting grass: inner corner, notch NW              |
-| 77    | `shore-ine`    | solid, anim 4 | Pond water meeting grass: inner corner, notch NE              |
-| 81    | `shore-isw`    | solid, anim 4 | Pond water meeting grass: inner corner, notch SW              |
-| 85    | `shore-ise`    | solid, anim 4 | Pond water meeting grass: inner corner, notch SE              |
-| 89    | `wall`         | solid         | Sandstone block wall                                          |
-| 90    | `window`       | solid         | Sandstone wall with a leaded window                           |
-| 91    | `door`         |               | Iron-banded wooden door (walkable, warps)                     |
-| 92    | `roof-peak`    | solid         | Roof ridge, top row of a roof                                 |
-| 93    | `roof`         | solid         | Red clay roof                                                 |
-| 94    | `roof-edge`    | solid, over   | Bottom row of a roof with the eave                            |
-| 95    | `tree`         | solid         | Tree trunk and lower crown (tree-top goes above)              |
-| 96    | `tree-top`     | over          | Tree crown, drawn over characters                             |
-| 97    | `hedge`        | solid         | Trimmed hedge, tiles horizontally                             |
-| 98    | `fence`        | solid         | Low stone fence with pillars                                  |
-| 99    | `well`         | solid, anim 2 | Village well                                                  |
-| 101   | `barrel`       | solid         | Wine barrel                                                   |
-| 102   | `bush`         | solid         | Round bush                                                    |
-| 103   | `flowerbed`    | solid         | Planter with flowers                                          |
-| 104   | `mfloor`       |               | Mansion parquet floor                                         |
-| 105   | `mfloor-2`     |               | Parquet variant                                               |
-| 106   | `carpet`       |               | Red mansion carpet                                            |
-| 107   | `carpet-n`     |               | Carpet meeting parquet: north border                          |
-| 108   | `carpet-s`     |               | Carpet meeting parquet: south border                          |
-| 109   | `carpet-w`     |               | Carpet meeting parquet: west border                           |
-| 110   | `carpet-e`     |               | Carpet meeting parquet: east border                           |
-| 111   | `carpet-nw`    |               | Carpet meeting parquet: outer corner NW                       |
-| 112   | `carpet-ne`    |               | Carpet meeting parquet: outer corner NE                       |
-| 113   | `carpet-sw`    |               | Carpet meeting parquet: outer corner SW                       |
-| 114   | `carpet-se`    |               | Carpet meeting parquet: outer corner SE                       |
-| 115   | `carpet-inw`   |               | Carpet meeting parquet: inner corner, notch NW                |
-| 116   | `carpet-ine`   |               | Carpet meeting parquet: inner corner, notch NE                |
-| 117   | `carpet-isw`   |               | Carpet meeting parquet: inner corner, notch SW                |
-| 118   | `carpet-ise`   |               | Carpet meeting parquet: inner corner, notch SE                |
-| 119   | `mwall`        | solid         | Mansion wall: damask paper over wood panels                   |
-| 120   | `mdoor`        |               | Mansion double door (walkable, warps)                         |
-| 121   | `books`        | solid         | Tall bookshelf                                                |
-| 122   | `painting`     | solid         | Mansion wall with a landscape painting                        |
-| 123   | `candle`       | solid, anim 4 | Brass candelabra                                              |
-| 127   | `table`        | solid         | Dining table top, tiles in any direction                      |
-| 128   | `table-nw`     | solid         | 2x2 dining table, NW quarter                                  |
-| 129   | `table-ne`     | solid         | 2x2 dining table, NE quarter                                  |
-| 130   | `table-sw`     | solid         | 2x2 dining table, SW quarter                                  |
-| 131   | `table-se`     | solid         | 2x2 dining table, SE quarter                                  |
-| 132   | `safe`         | solid         | Iron safe                                                     |
-| 133   | `armchair`     | solid         | Red velvet armchair                                           |
+| index | name           | flags         | description                                                               |
+| ----- | -------------- | ------------- | ------------------------------------------------------------------------- |
+| 0     | `chest`        | solid         | Closed treasure chest (drawn over the ground)                             |
+| 1     | `chest-open`   | solid         | Opened treasure chest                                                     |
+| 2     | `save`         | anim 4        | Save point: a pinned thread card hovering over a glowing ring             |
+| 6     | `grass`        |               | Golden meadow grass                                                       |
+| 7     | `grass-2`      |               | Golden grass variant                                                      |
+| 8     | `grass-flower` |               | Golden grass with flowers                                                 |
+| 9     | `path`         |               | Dirt road                                                                 |
+| 10    | `path-2`       |               | Dirt road variant                                                         |
+| 11    | `cobble`       |               | Old cobblestones                                                          |
+| 12    | `cobble-2`     |               | Cobblestones variant                                                      |
+| 13    | `water`        | solid, anim 4 | Pond water                                                                |
+| 17    | `path-n`       |               | Dirt road meeting grass: north border                                     |
+| 18    | `path-s`       |               | Dirt road meeting grass: south border                                     |
+| 19    | `path-w`       |               | Dirt road meeting grass: west border                                      |
+| 20    | `path-e`       |               | Dirt road meeting grass: east border                                      |
+| 21    | `path-nw`      |               | Dirt road meeting grass: outer corner NW                                  |
+| 22    | `path-ne`      |               | Dirt road meeting grass: outer corner NE                                  |
+| 23    | `path-sw`      |               | Dirt road meeting grass: outer corner SW                                  |
+| 24    | `path-se`      |               | Dirt road meeting grass: outer corner SE                                  |
+| 25    | `path-inw`     |               | Dirt road meeting grass: inner corner, notch NW                           |
+| 26    | `path-ine`     |               | Dirt road meeting grass: inner corner, notch NE                           |
+| 27    | `path-isw`     |               | Dirt road meeting grass: inner corner, notch SW                           |
+| 28    | `path-ise`     |               | Dirt road meeting grass: inner corner, notch SE                           |
+| 29    | `cobble-n`     |               | Cobbles meeting grass: north border                                       |
+| 30    | `cobble-s`     |               | Cobbles meeting grass: south border                                       |
+| 31    | `cobble-w`     |               | Cobbles meeting grass: west border                                        |
+| 32    | `cobble-e`     |               | Cobbles meeting grass: east border                                        |
+| 33    | `cobble-nw`    |               | Cobbles meeting grass: outer corner NW                                    |
+| 34    | `cobble-ne`    |               | Cobbles meeting grass: outer corner NE                                    |
+| 35    | `cobble-sw`    |               | Cobbles meeting grass: outer corner SW                                    |
+| 36    | `cobble-se`    |               | Cobbles meeting grass: outer corner SE                                    |
+| 37    | `cobble-inw`   |               | Cobbles meeting grass: inner corner, notch NW                             |
+| 38    | `cobble-ine`   |               | Cobbles meeting grass: inner corner, notch NE                             |
+| 39    | `cobble-isw`   |               | Cobbles meeting grass: inner corner, notch SW                             |
+| 40    | `cobble-ise`   |               | Cobbles meeting grass: inner corner, notch SE                             |
+| 41    | `shore-n`      | solid, anim 4 | Pond water meeting grass: north border                                    |
+| 45    | `shore-s`      | solid, anim 4 | Pond water meeting grass: south border                                    |
+| 49    | `shore-w`      | solid, anim 4 | Pond water meeting grass: west border                                     |
+| 53    | `shore-e`      | solid, anim 4 | Pond water meeting grass: east border                                     |
+| 57    | `shore-nw`     | solid, anim 4 | Pond water meeting grass: outer corner NW                                 |
+| 61    | `shore-ne`     | solid, anim 4 | Pond water meeting grass: outer corner NE                                 |
+| 65    | `shore-sw`     | solid, anim 4 | Pond water meeting grass: outer corner SW                                 |
+| 69    | `shore-se`     | solid, anim 4 | Pond water meeting grass: outer corner SE                                 |
+| 73    | `shore-inw`    | solid, anim 4 | Pond water meeting grass: inner corner, notch NW                          |
+| 77    | `shore-ine`    | solid, anim 4 | Pond water meeting grass: inner corner, notch NE                          |
+| 81    | `shore-isw`    | solid, anim 4 | Pond water meeting grass: inner corner, notch SW                          |
+| 85    | `shore-ise`    | solid, anim 4 | Pond water meeting grass: inner corner, notch SE                          |
+| 89    | `wall`         | solid         | Sandstone block wall                                                      |
+| 90    | `window`       | solid         | Sandstone wall with a leaded window                                       |
+| 91    | `door`         |               | Iron-banded wooden door, lower half (walkable, warps; put door-top above) |
+| 92    | `door-top`     | solid         | Upper half of the door under a raised eave                                |
+| 93    | `roof-peak`    | solid         | Roof ridge, top row of a roof                                             |
+| 94    | `roof`         | solid         | Red clay roof                                                             |
+| 95    | `roof-edge`    | solid, over   | Bottom row of a roof with the eave                                        |
+| 96    | `tree`         | solid         | Tree trunk and lower crown (tree-top goes above)                          |
+| 97    | `tree-top`     | over          | Tree crown, drawn over characters                                         |
+| 98    | `hedge`        | solid         | Trimmed hedge, tiles horizontally                                         |
+| 99    | `fence`        | solid         | Low stone fence with pillars                                              |
+| 100   | `well`         | solid, anim 2 | Village well                                                              |
+| 102   | `barrel`       | solid         | Wine barrel                                                               |
+| 103   | `bush`         | solid         | Round bush                                                                |
+| 104   | `flowerbed`    | solid         | Planter with flowers                                                      |
+| 105   | `mfloor`       |               | Mansion parquet floor                                                     |
+| 106   | `mfloor-2`     |               | Parquet variant                                                           |
+| 107   | `carpet`       |               | Red mansion carpet                                                        |
+| 108   | `carpet-n`     |               | Carpet meeting parquet: north border                                      |
+| 109   | `carpet-s`     |               | Carpet meeting parquet: south border                                      |
+| 110   | `carpet-w`     |               | Carpet meeting parquet: west border                                       |
+| 111   | `carpet-e`     |               | Carpet meeting parquet: east border                                       |
+| 112   | `carpet-nw`    |               | Carpet meeting parquet: outer corner NW                                   |
+| 113   | `carpet-ne`    |               | Carpet meeting parquet: outer corner NE                                   |
+| 114   | `carpet-sw`    |               | Carpet meeting parquet: outer corner SW                                   |
+| 115   | `carpet-se`    |               | Carpet meeting parquet: outer corner SE                                   |
+| 116   | `carpet-inw`   |               | Carpet meeting parquet: inner corner, notch NW                            |
+| 117   | `carpet-ine`   |               | Carpet meeting parquet: inner corner, notch NE                            |
+| 118   | `carpet-isw`   |               | Carpet meeting parquet: inner corner, notch SW                            |
+| 119   | `carpet-ise`   |               | Carpet meeting parquet: inner corner, notch SE                            |
+| 120   | `mwall`        | solid         | Mansion wall: damask paper over wood panels                               |
+| 121   | `mdoor`        |               | Mansion double door (walkable, warps)                                     |
+| 122   | `books`        | solid         | Tall bookshelf                                                            |
+| 123   | `painting`     | solid         | Mansion wall with a landscape painting                                    |
+| 124   | `candle`       | solid, anim 4 | Brass candelabra                                                          |
+| 128   | `table`        | solid         | Dining table top, tiles in any direction                                  |
+| 129   | `table-nw`     | solid         | 2x2 dining table, NW quarter                                              |
+| 130   | `table-ne`     | solid         | 2x2 dining table, NE quarter                                              |
+| 131   | `table-sw`     | solid         | 2x2 dining table, SW quarter                                              |
+| 132   | `table-se`     | solid         | 2x2 dining table, SE quarter                                              |
+| 133   | `safe`         | solid         | Iron safe                                                                 |
+| 134   | `armchair`     | solid         | Red velvet armchair                                                       |
 
 ## fin (42 tiles, 141 frames)
 

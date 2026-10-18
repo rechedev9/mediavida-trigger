@@ -16,6 +16,7 @@ export const plaza: MapDef = {
     "#": solid("wall"),
     "^": solid("roof"),
     D: open("door"),
+    d: solid("door-top"),
     W: solid("window"),
     T: solid("tree", "tree-top"),
     B: solid("bush"),
@@ -29,7 +30,7 @@ export const plaza: MapDef = {
   ground: [
     "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
     "T.^^^^^^..^^^^^^^^^^..^^^^^^.T",
-    "T.^^^^^^..^^^^^^^^^^..^^^^^^.T",
+    "T.^^d^^^..^^^^^^^^^^..^^d^^^.T",
     "T.##D#W#..#W##W##W#W..##D#W#.T",
     "T...:.....::::S:::::....:....T",
     "T,..:..L..:________:..L.:..,.T",

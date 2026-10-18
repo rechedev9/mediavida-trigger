@@ -28,6 +28,7 @@ export const oro: MapDef = {
     "^": solid("roof"),
     r: solid("roof-edge"),
     D: open("door"),
+    d: solid("door-top"),
     W: solid("window"),
     T: solid("tree", "tree-top"),
     H: solid("hedge"),
@@ -37,7 +38,7 @@ export const oro: MapDef = {
   ground: [
     "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
     "T.^^^^^...^^^^^^^^^^...^^^^^.T",
-    "T.rrrrr...rrrrrrrrrr...rrrrr.T",
+    "T.rrdrr...rrrrddrrrr...rrdrr.T",
     "T.#WDW#...#W#WDDW#W#...#WDW#.T",
     "T...:.....____::____.....:...T",
     "T,..:.....____::____.....:..,T",
