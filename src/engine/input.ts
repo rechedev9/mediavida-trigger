@@ -32,12 +32,15 @@ const repeatTimer = new Map<Button, number>();
 const repeatFrame = new Set<Button>();
 let anyListener: (() => void) | null = null;
 const padHeld = new Set<Button>();
+let anyNow = false;
+let anyFrame = false;
 
 export function initInput(onFirstInput: () => void): void {
   anyListener = onFirstInput;
   window.addEventListener("keydown", (e) => {
     const b = KEYMAP[e.code];
     anyListener?.();
+    if (!e.repeat) anyNow = true;
     if (!b) return;
     e.preventDefault();
     if (!held.has(b)) pressedNow.add(b);
@@ -48,6 +51,12 @@ export function initInput(onFirstInput: () => void): void {
     if (b) held.delete(b);
   });
   window.addEventListener("blur", () => held.clear());
+  // Inside an embed (itch.io) a click is what gives the page keyboard focus.
+  window.addEventListener("pointerdown", () => {
+    window.focus();
+    anyListener?.();
+    anyNow = true;
+  });
 }
 
 function pollGamepad(): void {
@@ -69,7 +78,10 @@ function pollGamepad(): void {
     };
     for (const b of ALL) {
       if (state[b]) {
-        if (!held.has(b)) pressedNow.add(b);
+        if (!held.has(b)) {
+          pressedNow.add(b);
+          anyNow = true;
+        }
         held.add(b);
         anyListener?.();
       } else if (padHeld.has(b)) {
@@ -87,6 +99,8 @@ export function updateInput(dt: number): void {
   repeatFrame.clear();
   for (const b of pressedNow) pressedFrame.add(b);
   pressedNow.clear();
+  anyFrame = anyNow;
+  anyNow = false;
   for (const b of ALL) {
     // A tap released before this frame still moves menu cursors once.
     if (!held.has(b)) {
@@ -120,4 +134,9 @@ export function wasPressed(b: Button): boolean {
 /** Pressed this frame or auto-repeating while held; for menu cursors. */
 export function wasRepeated(b: Button): boolean {
   return repeatFrame.has(b);
+}
+
+/** Any key, pad button or click this frame; for "press to start" screens. */
+export function wasAnyPressed(): boolean {
+  return anyFrame;
 }

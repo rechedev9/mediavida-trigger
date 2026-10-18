@@ -4,11 +4,12 @@ import { MAPS } from "./data/maps";
 import { PARTY } from "./data/party";
 import type { FxId } from "./data/types";
 import { loadData, loadPlainImage, loadSheet } from "./engine/assets";
-import { initFont, setWindowTheme } from "./engine/gfx";
+import { drawBar, drawText, initFont, setWindowTheme } from "./engine/gfx";
 import { initInput, updateInput } from "./engine/input";
 import { createScreen, SCREEN_H, SCREEN_W } from "./engine/screen";
 import { FieldScene } from "./game/field";
 import { draw, game, setState, update } from "./game/game";
+import { StartScene } from "./game/start";
 import { loadGame, newGame, type GameState } from "./game/state";
 import { TitleScene } from "./game/title";
 
@@ -34,14 +35,22 @@ function npcSprites(): string[] {
   return [...ids];
 }
 
-async function preload(): Promise<void> {
+function drawLoading(ctx: CanvasRenderingContext2D, progress: number): void {
+  ctx.fillStyle = "#000000";
+  ctx.fillRect(0, 0, SCREEN_W, SCREEN_H);
+  drawText(ctx, "Cargando...", { x: SCREEN_W / 2, y: 96, align: "center" });
+  drawBar(ctx, { x: 64, y: 116, w: 128, value: progress, color: "#f88820" });
+}
+
+async function preload(ctx: CanvasRenderingContext2D): Promise<void> {
+  // The font loads first so the loading screen can use it.
+  await Promise.all([loadPlainImage("ui/font"), loadData("ui/font.json")]);
+  initFont();
   const party = PARTY.map((p) => p.id);
   const chars = [...new Set([...party, ...npcSprites()])];
-  await Promise.all([
+  const jobs: Promise<unknown>[] = [
     loadPlainImage("ui/window"),
     loadPlainImage("ui/title"),
-    loadPlainImage("ui/font"),
-    loadData("ui/font.json"),
     loadSheet("ui/cursor"),
     loadSheet("ui/icons"),
     loadSheet("ui/logo"),
@@ -49,8 +58,10 @@ async function preload(): Promise<void> {
     ...chars.map((id) => loadPlainImage(`faces/${id}`)),
     ...Object.keys(ENEMIES).map((id) => loadSheet(`enemies/${id}`)),
     ...FX.map((id) => loadSheet(`fx/${id}`)),
-  ]);
-  initFont();
+  ];
+  let done = 0;
+  drawLoading(ctx, 0);
+  await Promise.all(jobs.map((job) => job.then(() => drawLoading(ctx, ++done / jobs.length))));
 }
 
 function applySettings(s: GameState): void {
@@ -82,10 +93,11 @@ async function boot(): Promise<void> {
   ctx.fillStyle = "#000000";
   ctx.fillRect(0, 0, SCREEN_W, SCREEN_H);
   initInput(unlockAudio);
-  await preload();
+  await preload(ctx);
   game.hooks.title = showTitle;
   game.hooks.continueGame = () => void startGame({ load: true });
-  showTitle();
+  game.fade.alpha = 0;
+  game.stack.reset(new StartScene(showTitle));
 
   let last = performance.now();
   let acc = 0;
