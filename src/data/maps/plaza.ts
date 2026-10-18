@@ -39,8 +39,8 @@ export const plaza: MapDef = {
     "T...:.....:________:....:....T",
     "T.,.:.....::::::::::....:..,.T",
     "T...:::::::::::::::::::::....T",
-    "T.T.:..CCC....::....CCC.:..T.T",
-    "T...:.........::........:....T",
+    "T.T.:.........::........:..T.T",
+    "T...:..CCC....::....CCC.:....T",
     "T.,.:..S..L...::...L..b.:..,.T",
     "T...:::::::::::::::::::::....T",
     "TFFF.........::::.........FFFT",
@@ -105,7 +105,7 @@ export const plaza: MapDef = {
       id: "ekeix",
       sprite: "npc-ekeix",
       x: 21,
-      y: 11,
+      y: 12,
       dir: "down",
       talk: async (api) => {
         await api.say(
@@ -167,7 +167,7 @@ export const plaza: MapDef = {
     {
       id: "aldeano-1",
       sprite: "npc-aldeano-1",
-      x: 9,
+      x: 11,
       y: 13,
       wander: true,
       talk: (api) =>

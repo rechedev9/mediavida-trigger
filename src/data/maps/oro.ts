@@ -192,7 +192,7 @@ export const oro: MapDef = {
     {
       id: "oro-3",
       sprite: "npc-aldeano-3",
-      x: 2,
+      x: 3,
       y: 12,
       wander: true,
       talk: (api) =>
@@ -252,7 +252,7 @@ export const oro: MapDef = {
     },
     {
       id: "s4",
-      x: 7,
+      x: 9,
       y: 19,
       show: "cuenta-rara",
       encounter: { enemies: ["cuenta-rara", "flamer", "spambot"] },
@@ -268,7 +268,7 @@ export const oro: MapDef = {
   chests: [
     { id: "a", x: 1, y: 8, item: "cerveza", n: 2 },
     { id: "b", x: 28, y: 19, item: "cafe-doble" },
-    { id: "c", x: 1, y: 20, item: "desbaneo" },
+    { id: "c", x: 1, y: 19, item: "desbaneo" },
   ],
   saves: [{ x: 14, y: 16 }],
   triggers: [],

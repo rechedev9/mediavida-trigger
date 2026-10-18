@@ -71,9 +71,9 @@ the plain suffix is the side where the outer ground shows, `i*` tiles are inner 
 | 100   | `counter`        | solid         | Market stall counter with produce                             |
 | 101   | `counter-l`      | solid         | Market counter, left end                                      |
 | 102   | `counter-r`      | solid         | Market counter, right end                                     |
-| 103   | `awning`         | over          | Striped stall awning, drawn over characters                   |
-| 104   | `awning-l`       | over          | Awning, left end                                              |
-| 105   | `awning-r`       | over          | Awning, right end                                             |
+| 103   | `awning`         |               | Striped stall awning, drawn behind the stall keeper           |
+| 104   | `awning-l`       |               | Awning, left end                                              |
+| 105   | `awning-r`       |               | Awning, right end                                             |
 | 106   | `lamp`           | solid         | Iron street lamp                                              |
 | 107   | `fountain`       | solid, anim 4 | Small one-tile fountain on paving                             |
 | 111   | `fountain-nw`    | solid, anim 4 | Big 2x2 fountain, NW quarter                                  |

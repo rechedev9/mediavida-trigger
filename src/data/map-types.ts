@@ -6,7 +6,7 @@ export type Script = (api: ScriptApi) => Promise<void>;
 export type LegendEntry = {
   tile: string;
   solid: boolean;
-  /** Tile drawn above characters on the row above (tree tops, awnings). */
+  /** Tile for the row above, which becomes solid (tree tops, awnings). */
   above?: string;
 };
 

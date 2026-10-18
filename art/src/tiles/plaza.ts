@@ -597,8 +597,7 @@ export const PLAZA: TilesetDef = {
     },
     {
       name: "awning",
-      desc: "Striped stall awning, drawn over characters",
-      over: true,
+      desc: "Striped stall awning, drawn behind the stall keeper",
       grid: [
         "................",
         "................",
@@ -621,7 +620,6 @@ export const PLAZA: TilesetDef = {
     {
       name: "awning-l",
       desc: "Awning, left end",
-      over: true,
       grid: [
         "................",
         "................",
@@ -644,7 +642,6 @@ export const PLAZA: TilesetDef = {
     {
       name: "awning-r",
       desc: "Awning, right end",
-      over: true,
       flipX: "awning-l",
     },
     {

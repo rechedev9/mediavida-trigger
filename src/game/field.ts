@@ -25,7 +25,7 @@ import { GameOverScene } from "./gameover";
 import { MenuScene } from "./menu";
 import type { Encounter, ScriptApi } from "./script-api";
 import { ShopScene } from "./shop";
-import { drawActor } from "./sprites";
+import { drawActor, drawShadow } from "./sprites";
 import {
   activeIds,
   addItem,
@@ -56,6 +56,7 @@ type Cell = { tile: string; solid: boolean; draw: string };
 const WALK = 72;
 const RUN = 124;
 const FOLLOW_GAP = 14;
+const CORNER_SLIDE = 6;
 const DIR_VEC: Record<Dir, [number, number]> = {
   down: [0, 1],
   up: [0, -1],
@@ -172,11 +173,15 @@ export class FieldScene implements Scene, ScriptApi {
       });
     });
     this.over = this.cells.map((row) => row.map(() => null));
+    // The cell under a crown or awning is solid, so no head pokes out above it.
     this.map.ground.forEach((row, y) => {
       Array.from(row).forEach((c, x) => {
         const above = this.map.legend[c]?.above;
         const line = this.over[y - 1];
-        if (above && line) line[x] = above;
+        const cell = this.cells[y - 1]?.[x];
+        if (!above || !line || !cell) return;
+        line[x] = above;
+        cell.solid = true;
       });
     });
     const has = (name: string): boolean => set?.tiles.has(name) ?? false;
@@ -245,7 +250,35 @@ export class FieldScene implements Scene, ScriptApi {
       ...this.npcs.filter((n) => n.visible),
       ...(o.self === this.player ? [] : [this.player]),
     ];
-    return actors.some((a) => a !== o.self && Math.abs(a.x - o.x) < 11 && Math.abs(a.y - o.y) < 8);
+    const self = o.self;
+    const hits = (a: Actor, x: number, y: number): boolean =>
+      Math.abs(a.x - x) < 11 && Math.abs(a.y - y) < 8;
+    // An actor already overlapping another (a wanderer stepped in) may still move apart.
+    const apart = (a: Actor): boolean =>
+      self !== null &&
+      hits(a, self.x, self.y) &&
+      Math.hypot(a.x - o.x, a.y - o.y) > Math.hypot(a.x - self.x, a.y - self.y);
+    return actors.some((a) => a !== self && hits(a, o.x, o.y) && !apart(a));
+  }
+
+  /** Slides the player past a corner they only clip by a few pixels. */
+  private nudge(o: { dx: number; dy: number; speed: number }): void {
+    const p = this.player;
+    for (let off = 1; off <= CORNER_SLIDE; off++) {
+      for (const side of [-1, 1]) {
+        const sx = o.dy !== 0 ? side * off : 0;
+        const sy = o.dx !== 0 ? side * off : 0;
+        const ahead = { x: p.x + sx + o.dx * o.speed, y: p.y + sy + o.dy * o.speed, self: p };
+        if (this.blockedBy(ahead)) continue;
+        const step = Math.min(o.speed, off);
+        const next = { x: p.x + Math.sign(sx) * step, y: p.y + Math.sign(sy) * step, self: p };
+        if (!this.blockedBy(next)) {
+          p.x = next.x;
+          p.y = next.y;
+        }
+        return;
+      }
+    }
   }
 
   private movePlayer(dt: number): void {
@@ -267,6 +300,7 @@ export class FieldScene implements Scene, ScriptApi {
     const oy = p.y;
     if (dx !== 0 && !this.blockedBy({ x: p.x + dx * speed, y: p.y, self: p })) p.x += dx * speed;
     if (dy !== 0 && !this.blockedBy({ x: p.x, y: p.y + dy * speed, self: p })) p.y += dy * speed;
+    if (p.x === ox && p.y === oy && (dx === 0 || dy === 0)) this.nudge({ dx, dy, speed });
     if (p.x !== ox || p.y !== oy) {
       this.trail.unshift({ x: p.x, y: p.y, dir: p.dir });
       if (this.trail.length > FOLLOW_GAP * 3 + 1) this.trail.length = FOLLOW_GAP * 3 + 1;
@@ -535,12 +569,15 @@ export class FieldScene implements Scene, ScriptApi {
         solid: true,
       });
     }
+    this.drawOver({ ctx, set, front: false });
     type Drawable = { y: number; draw: () => void };
     const list: Drawable[] = [];
     for (const s of this.map.spawns) {
       if (!opts.actors || !this.spawnVisible(s)) continue;
       const x = s.x * TILE + TILE / 2 - camX;
-      const y = s.y * TILE + TILE - camY + Math.round(Math.sin(time * 3 + s.x) * 1.5);
+      const ground = s.y * TILE + TILE - camY;
+      const y = ground + Math.round(Math.sin(time * 3 + s.x) * 1.5);
+      drawShadow(ctx, { x, y: ground, w: 14 });
       list.push({
         y,
         draw: () =>
@@ -558,6 +595,7 @@ export class FieldScene implements Scene, ScriptApi {
     const actors: Actor[] = opts.actors
       ? [...this.npcs.filter((n) => n.visible && n.sheet), ...this.followers, this.player]
       : [];
+    for (const a of actors) drawShadow(ctx, { x: a.x - camX, y: a.y - camY, w: 12 });
     for (const a of actors) {
       const { tag, flip } = facingTag(a);
       list.push({
@@ -576,13 +614,7 @@ export class FieldScene implements Scene, ScriptApi {
     }
     list.sort((a, b) => a.y - b.y);
     for (const d of list) d.draw();
-    for (let y = y0; y < y1; y++) {
-      for (let x = x0; x < x1; x++) {
-        const name = this.over[y]?.[x];
-        if (name)
-          drawTile(ctx, set, { name, x: x * TILE - camX, y: y * TILE - camY, time, solid: false });
-      }
-    }
+    this.drawOver({ ctx, set, front: true });
     for (let y = y0; y < y1; y++) {
       for (let x = x0; x < x1; x++) {
         const c = this.cells[y]?.[x];
@@ -596,6 +628,21 @@ export class FieldScene implements Scene, ScriptApi {
           });
       }
     }
+  }
+
+  /** Crowns flagged `over` go in front of actors; awnings sit behind the stall keeper. */
+  private drawOver(o: { ctx: CanvasRenderingContext2D; set: Tileset; front: boolean }): void {
+    const camX = Math.round(this.cam.x);
+    const camY = Math.round(this.cam.y);
+    this.over.forEach((row, y) =>
+      row.forEach((name, x) => {
+        if (!name || tileIsOver(o.set, name) !== o.front) return;
+        const px = x * TILE - camX;
+        const py = y * TILE - camY;
+        if (px <= -TILE || py <= -TILE || px >= SCREEN_W || py >= SCREEN_H) return;
+        drawTile(o.ctx, o.set, { name, x: px, y: py, time: game.time, solid: false });
+      }),
+    );
   }
 
   // ---- ScriptApi ----

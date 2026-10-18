@@ -12,7 +12,6 @@ export const lan: MapDef = {
     "#": solid("wall"),
     "=": solid("wall-top"),
     P: solid("desk-pc"),
-    d: solid("desk"),
     h: open("chair"),
     "-": open("cable"),
     p: solid("poster"),

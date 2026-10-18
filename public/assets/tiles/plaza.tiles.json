@@ -348,18 +348,15 @@
     },
     "awning": {
       "index": 103,
-      "solid": false,
-      "over": true
+      "solid": false
     },
     "awning-l": {
       "index": 104,
-      "solid": false,
-      "over": true
+      "solid": false
     },
     "awning-r": {
       "index": 105,
-      "solid": false,
-      "over": true
+      "solid": false
     },
     "lamp": {
       "index": 106,

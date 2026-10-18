@@ -46,6 +46,19 @@ export function drawActor(ctx: CanvasRenderingContext2D, a: ActorDraw): void {
   });
 }
 
+/** A flat oval under the feet; drawn before every actor so it never covers one. */
+export function drawShadow(
+  ctx: CanvasRenderingContext2D,
+  o: { x: number; y: number; w: number },
+): void {
+  const x = Math.round(o.x - o.w / 2);
+  const y = Math.round(o.y);
+  ctx.fillStyle = "rgba(16, 8, 24, 0.3)";
+  ctx.fillRect(x + 2, y - 3, o.w - 4, 1);
+  ctx.fillRect(x, y - 2, o.w, 2);
+  ctx.fillRect(x + 2, y, o.w - 4, 1);
+}
+
 function drawPlaceholder(ctx: CanvasRenderingContext2D, a: ActorDraw): void {
   const [w, h] = a.size ?? [12, 26];
   const x = Math.round(a.x - w / 2);
